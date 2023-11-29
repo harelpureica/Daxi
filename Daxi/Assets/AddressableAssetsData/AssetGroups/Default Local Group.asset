@@ -1,0 +1,221 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: d92ce2ecc249a6d4b8f0a6a4482763e3
+  m_SerializeEntries:
+  - m_GUID: 2fb6c930fa1acaf488a130e2921f32a6
+    m_Address: Assets/_Game/ResizedTextures/road/G13.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WorldOne
+  - m_GUID: 670c137a986a2c14190d64138706ee3f
+    m_Address: Assets/_Game/ResizedTextures/road/G12.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WorldOne
+  - m_GUID: e38114bb302032c4e8c8c37f36474197
+    m_Address: Assets/_Game/ResizedTextures/road/G11.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WorldOne
+  - m_GUID: 14d8723fb3626464b8247887d08ca898
+    m_Address: Assets/_Game/ResizedTextures/road/G10.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WorldOne
+  - m_GUID: 9122d65fcf0ee5a4f93fc2ef071910d0
+    m_Address: Assets/_Game/ResizedTextures/road/G9.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WorldOne
+  - m_GUID: 9107adbcde164604bb217b5912c52ced
+    m_Address: Assets/_Game/ResizedTextures/road/G8.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WorldOne
+  - m_GUID: 4067c7e5e32fbe2459dc4701c881054a
+    m_Address: Assets/_Game/ResizedTextures/road/G7.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WorldOne
+  - m_GUID: 388bcb36451e1b04b85ba6ac7acf7870
+    m_Address: Assets/_Game/ResizedTextures/road/G6.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WorldOne
+  - m_GUID: e728edb8ed37b9744b106d03a9828df4
+    m_Address: Assets/_Game/ResizedTextures/road/G5.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WorldOne
+  - m_GUID: b57b6c9d09956a04f825d81591119d43
+    m_Address: Assets/_Game/ResizedTextures/road/G4.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WorldOne
+  - m_GUID: bb9e4fb086f2e9444bbcc0352447f36e
+    m_Address: Assets/_Game/ResizedTextures/road/G3.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WorldOne
+  - m_GUID: 7d8b52a72ca265b4a8d2aad2c6a09fe7
+    m_Address: Assets/_Game/ResizedTextures/road/G2.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WorldOne
+  - m_GUID: f105f05f8c72907459038d546a64926e
+    m_Address: Assets/_Game/Animation/Player/AnimatorControllers/DaxdeadAnimatorController.controller
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Daxi
+  - m_GUID: 623a1213fad74704b942bf087e7e97c2
+    m_Address: Assets/_Game/Animation/Player/AnimatorControllers/DaxerAnimatorController.controller
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Daxi
+  - m_GUID: 0310e0b16a5bacc43a44c65c8996428b
+    m_Address: Assets/_Game/Animation/Player/AnimatorControllers/DaxbertyAnimatorController
+      3.controller
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Daxi
+  - m_GUID: 133f119c2904c134191a035dff77a015
+    m_Address: Assets/_Game/Animation/Player/AnimatorControllers/DaxblondAnimatorController
+      1.controller
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Daxi
+  - m_GUID: 23d9c57c62419b24890b7e34185097b3
+    m_Address: Assets/_Game/Animation/Player/AnimatorControllers/DaxiroAnimatorController
+      2.controller
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Daxi
+  - m_GUID: 53ae55a930c463b4a80be700873fde68
+    m_Address: Assets/_Game/Animation/Player/AnimatorControllers/DaxiAnimatorController.controller
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Daxi
+  - m_GUID: 862d5db27680d81448eb6c4a93f0fd33
+    m_Address: Assets/_Game/Animation/Player/AnimatorControllers/DaxigonAnimatorController
+      1.controller
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Daxi
+  - m_GUID: 2dc0c8f3f8b53c14caa8d887909dc1a1
+    m_Address: Assets/_Game/Graphics/Road/Flying G/Medium FG/MFG1.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WorldOne
+  - m_GUID: b20f55c61cbae0142aac350e721ab410
+    m_Address: Assets/_Game/Graphics/Road/Flying G/Medium FG/MFG2.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WorldOne
+  - m_GUID: 441801448d09b7547ba0fb6b7b859b10
+    m_Address: Assets/_Game/Graphics/Road/Flying G/Medium FG/MFG3.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WorldOne
+  - m_GUID: 51c790ac7860942469d96f4f090c5f63
+    m_Address: Assets/_Game/Graphics/Road/Flying G/Medium FG/MFG4.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WorldOne
+  - m_GUID: b04ed0600ebd35047ab74daf12736db2
+    m_Address: Assets/_Game/Graphics/Road/Flying G/Small FG/SFG2.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WorldOne
+  - m_GUID: 31753feab857cab4392657fc73c60e61
+    m_Address: Assets/_Game/ResizedTextures/road/G1.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WorldOne
+  - m_GUID: 5b27fa0e74dd10d4bafd4b67a9ab2f02
+    m_Address: Assets/_Game/Graphics/Harel/WorldTwo/Ground/Rectangle 538.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WorldTwo
+  - m_GUID: b390683fdff8eba4e8c98fd64102b5b6
+    m_Address: Assets/_Game/Graphics/Harel/WorldTwo/Ground/Group 5372.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WorldTwo
+  - m_GUID: 7980df32b7202774a9f9deb0d9ef07e9
+    m_Address: Assets/_Game/Graphics/Harel/WorldTwo/Ground/Group 5374.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WorldTwo
+  - m_GUID: 7e4afa17b054b0e40a4bd10e13da0c78
+    m_Address: Assets/_Game/Graphics/Harel/WorldTwo/Ground/Group 5373.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WorldTwo
+  - m_GUID: 8325961229a07504f8cc40e7f1e6af98
+    m_Address: Assets/_Game/Graphics/Harel/WorldTwo/Ground/Rectangle 515.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WorldTwo
+  - m_GUID: 731a1c063913bd748ac93bc8d5822372
+    m_Address: Assets/_Game/Graphics/Harel/WorldTwo/Ground/Group 5351.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WorldTwo
+  - m_GUID: dd73689382716c44497843c57838823e
+    m_Address: Assets/_Game/Graphics/Harel/WorldTwo/Ground/Group 5354.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WorldTwo
+  - m_GUID: 9a7e9aec5e3964d42b2bd1048c797c05
+    m_Address: Assets/_Game/Graphics/Harel/WorldTwo/Ground/Group 5392.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 26157d09fde5f8d49bead354f81a0240
+    m_Address: Assets/_Game/Graphics/Harel/WorldThree/Group 5380.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6201ce1c1b5afa34daca57cf4b129603
+    m_Address: Assets/_Game/Graphics/Harel/WorldThree/Ground/Group 5379.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 62aac4c86b247d444a9434dc2f47dbe5
+    m_Address: Assets/_Game/Graphics/Harel/WorldThree/Group 5378.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 70be7e38fe9c98746a4c52581f132de8
+    m_Address: Assets/_Game/Graphics/Harel/WorldThree/Group 5377.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: dac1450040e9ecc4a85483a735b87e2c
+    m_Address: Assets/_Game/Graphics/Harel/WorldThree/Ground/Rectangle 644.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d61baa6cad6bb9a4eabb65faa090592a
+    m_Address: Assets/_Game/Graphics/Harel/WorldThree/Group 5382.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b146a7fe52a71374bb5d9374f385a513
+    m_Address: Assets/_Game/Graphics/Harel/WorldThree/Ground/Rectangle 627.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: d74e72f691ba9794aaf798aff747098d, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: cc1619dd67920ef439d509e5325f43b0, type: 2}
+    - {fileID: 11400000, guid: 19af60d63f60aa046a641e8847e047be, type: 2}

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2439bb378db13034889dfd6ce91cdda9, type: 3}
+  m_Name: Mission6Data
+  m_EditorClassIdentifier: 
+  _description: 'Collect all letters of this word:'
+  _items:
+  - {fileID: 11400000, guid: aa0b2e9a4f36abe429af31498f832cfe, type: 2}
+  - {fileID: 11400000, guid: cea7a29f70c258e4fa19201886759612, type: 2}
+  - {fileID: 11400000, guid: 82fff653451b64f48ad580af08d9214f, type: 2}
+  - {fileID: 11400000, guid: f5c5f45a3cd7b4f46a363d2f1f4a7a8e, type: 2}
+  _itemsCountNumber: {fileID: 0}
+  _itemsCount: 4
+  _mode: 2

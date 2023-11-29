@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: DaxiGumEndAtalas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 2
+      m_CompressionQuality: 100
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: d2c32f2b818973649a37fb3b5f2f4912, type: 3}
+    - {fileID: 2800000, guid: 8a0eee447f63153449d0a23d6740897c, type: 3}
+    - {fileID: 2800000, guid: 7fd60d55c9c3faf42bc65165b1a84530, type: 3}
+    - {fileID: 2800000, guid: fcfca53eef67e5444800462d85172b97, type: 3}
+    - {fileID: 2800000, guid: 79645a3f502d3fb44b19535ac45e528b, type: 3}
+    - {fileID: 2800000, guid: 20874f00e840cff4e93909076dc247b1, type: 3}
+    - {fileID: 2800000, guid: f458ddebdc060614dabeed86bd1cd968, type: 3}
+    - {fileID: 2800000, guid: 88e9cfd6083f988499bb43fdc933d062, type: 3}
+    - {fileID: 2800000, guid: 6bb37d461c5b8b141b42736b5e33ea97, type: 3}
+    - {fileID: 2800000, guid: 01f885bfcaff3e4428f0918dd9c402b6, type: 3}
+    - {fileID: 2800000, guid: 9e488202596fa78429b15b8afb552554, type: 3}
+    - {fileID: 2800000, guid: 1ba646b002484ae448ad453f026dfeb2, type: 3}
+    - {fileID: 2800000, guid: 57e160f945bb9fb48ad8e26b985ad753, type: 3}
+    - {fileID: 2800000, guid: 5a91f28eebf06b844b28cea525838a50, type: 3}
+    - {fileID: 2800000, guid: f3a79a34c82129c418f6b7947d6a73d1, type: 3}
+    - {fileID: 2800000, guid: f6d9b15f56d481b499dfb71885a8dc53, type: 3}
+    - {fileID: 2800000, guid: 22742ec52ab8ec84a9ac1ec7b0bd0585, type: 3}
+    - {fileID: 2800000, guid: e7b21f93234c83d4ab91cb2e8cdb31eb, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 20874f00e840cff4e93909076dc247b1, type: 3}
+  - {fileID: 21300000, guid: 1ba646b002484ae448ad453f026dfeb2, type: 3}
+  - {fileID: 21300000, guid: 9e488202596fa78429b15b8afb552554, type: 3}
+  - {fileID: 21300000, guid: e7b21f93234c83d4ab91cb2e8cdb31eb, type: 3}
+  - {fileID: 21300000, guid: f3a79a34c82129c418f6b7947d6a73d1, type: 3}
+  - {fileID: 21300000, guid: 8a0eee447f63153449d0a23d6740897c, type: 3}
+  - {fileID: 21300000, guid: 7fd60d55c9c3faf42bc65165b1a84530, type: 3}
+  - {fileID: 21300000, guid: 22742ec52ab8ec84a9ac1ec7b0bd0585, type: 3}
+  - {fileID: 21300000, guid: 6bb37d461c5b8b141b42736b5e33ea97, type: 3}
+  - {fileID: 21300000, guid: 88e9cfd6083f988499bb43fdc933d062, type: 3}
+  - {fileID: 21300000, guid: 57e160f945bb9fb48ad8e26b985ad753, type: 3}
+  - {fileID: 21300000, guid: d2c32f2b818973649a37fb3b5f2f4912, type: 3}
+  - {fileID: 21300000, guid: f458ddebdc060614dabeed86bd1cd968, type: 3}
+  - {fileID: 21300000, guid: fcfca53eef67e5444800462d85172b97, type: 3}
+  - {fileID: 21300000, guid: 5a91f28eebf06b844b28cea525838a50, type: 3}
+  - {fileID: 21300000, guid: 79645a3f502d3fb44b19535ac45e528b, type: 3}
+  - {fileID: 21300000, guid: f6d9b15f56d481b499dfb71885a8dc53, type: 3}
+  - {fileID: 21300000, guid: 01f885bfcaff3e4428f0918dd9c402b6, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - 1 gum Daxi0034
+  - 1 gum Daxi0040
+  - 1 gum Daxi0039
+  - 1 gum Daxi0046
+  - 1 gum Daxi0043
+  - 1 gum Daxi0030
+  - 1 gum Daxi0031
+  - 1 gum Daxi0045
+  - 1 gum Daxi0037
+  - 1 gum Daxi0036
+  - 1 gum Daxi0041
+  - 1 gum Daxi0029
+  - 1 gum Daxi0035
+  - 1 gum Daxi0032
+  - 1 gum Daxi0042
+  - 1 gum Daxi0033
+  - 1 gum Daxi0044
+  - 1 gum Daxi0038
+  m_RenderDataMap: {}
+  m_Tag: DaxiGumEndAtalas
+  m_IsVariant: 0

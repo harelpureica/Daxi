@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c7b27fddcfae7f448b92af10804c021, type: 3}
+  m_Name: SceneLoaderInstaller
+  m_EditorClassIdentifier: 
+  _sceneSets:
+  - MyScene: Start
+    MyDependency: []
+  - MyScene: Menu
+    MyDependency:
+    - Popups
+  - MyScene: Store
+    MyDependency:
+    - Popups
+  - MyScene: WorldSelection
+    MyDependency: []
+  - MyScene: WorldOneLevelSelection
+    MyDependency:
+    - Loading
+  - MyScene: WorldOneLevelOne
+    MyDependency:
+    - Loading
+    - Popups
+  - MyScene: WorldOneLevelTwo
+    MyDependency:
+    - Loading
+    - Popups
+  - MyScene: WorldOneLevelThree
+    MyDependency:
+    - Loading
+    - Popups
+  - MyScene: WorldOneLevelFour
+    MyDependency:
+    - Loading
+    - Popups
+  - MyScene: WorldOneLevelFive
+    MyDependency:
+    - Loading
+    - Popups
+  - MyScene: WorldOneLevelSix
+    MyDependency:
+    - Loading
+    - Popups
+  - MyScene: WorldTwoLevelSelection
+    MyDependency:
+    - Loading
+  - MyScene: WorldTwoLevelOne
+    MyDependency:
+    - Loading
+    - Popups
+  - MyScene: WorldTwoLevelTwo
+    MyDependency:
+    - Loading
+    - Popups
+  - MyScene: WorldTwoLevelThree
+    MyDependency:
+    - Loading
+    - Popups
+  - MyScene: WorldTwoLevelFour
+    MyDependency:
+    - Loading
+    - Popups
+  - MyScene: WorldTwoLevelFive
+    MyDependency:
+    - Loading
+    - Popups
+  - MyScene: WorldTwoLevelSix
+    MyDependency:
+    - Loading
+    - Popups
+  - MyScene: WorldThreeLevelSelection
+    MyDependency:
+    - Loading
