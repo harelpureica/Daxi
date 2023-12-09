@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Mission1Data
   m_EditorClassIdentifier: 
   _description: Collect 5 Donutes
-  _obsticles: []
-  _enemies: []
   _items:
   - {fileID: 11400000, guid: 243b90ff0b4ffb84daf2ef8b9d5c70c7, type: 2}
   _itemsCountNumber: {fileID: 21300000, guid: 2ffe54ace1ebec545a0d0fde96dd3d6e, type: 3}
   _itemsCount: 5
+  _mode: 0
+  _popupSprite: {fileID: 21300000, guid: 253bf705bf21db54d968b6214b808dea, type: 3}

@@ -19,6 +19,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 82fff653451b64f48ad580af08d9214f, type: 2}
   - {fileID: 11400000, guid: f5c5f45a3cd7b4f46a363d2f1f4a7a8e, type: 2}
   _itemsCountNumber: {fileID: 0}
-  _popupsLayoutScaleMultiplier: 1
   _itemsCount: 4
   _mode: 2
+  _popupSprite: {fileID: 21300000, guid: f9fb851b1bb49df4ba61c4a589f325a7, type: 3}

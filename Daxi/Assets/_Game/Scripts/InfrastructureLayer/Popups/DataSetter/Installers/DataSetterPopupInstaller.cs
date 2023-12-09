@@ -1,6 +1,5 @@
 ﻿using Zenject;
 using UnityEngine;
-using Assets._Game.Scripts.InfrastructureLayer.Popups.DataSetter;
 
 namespace Daxi.InfrastructureLayer.Popups.DataSetter.Installers
 {

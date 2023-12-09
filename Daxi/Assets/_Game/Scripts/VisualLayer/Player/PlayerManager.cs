@@ -120,10 +120,18 @@ namespace Daxi.VisualLayer.Player
             _canvas.worldCamera = _camera;
             _playerData = data;
              _playerAnimation.SetCharacter(_playerData.CharacterIndex);           
-            _playerPowerUpcomponent.SetData(_playerData);
+            _playerPowerUpcomponent.InitializeData(_playerData);
+            _playerPowerUpcomponent.OnExtraPlankUsed -= OnExtraPlanksUsed;
+            _playerPowerUpcomponent.OnExtraPlankUsed += OnExtraPlanksUsed;
+            _playerPowerUpcomponent.OnExtraGumUsed -= OnExtraGumUsed;
+            _playerPowerUpcomponent.OnExtraGumUsed += OnExtraGumUsed;
+            _playerPowerUpcomponent.OnExtraShieldUsed -= OnExtraShieldUsed;
+            _playerPowerUpcomponent.OnExtraShieldUsed += OnExtraShieldUsed;
             _healthComponent.Initialize(_playerSettings.StartHealth+_playerData.Hearts);
             _healthComponent.OnDead -= OnDead;
             _healthComponent.OnDead += OnDead;
+            _healthComponent.OnExtraHealthUsed -= OnExtraHealthUsed;
+            _healthComponent.OnExtraHealthUsed += OnExtraHealthUsed;
             _signalBus.Subscribe<OnDamagingPlayer>(TakeDamage);
             _signalBus.Subscribe<OnSpring>(Spring);
             _signalBus.Subscribe<OnSpeedUp>(OnSpeedUpHandler);
@@ -141,6 +149,33 @@ namespace Daxi.VisualLayer.Player
             {
                 await UniTask.Yield();
             }
+
+        }
+
+        public void OnExtraHealthUsed()
+        {
+            _playerData.RemoveHeart(1);
+            Debug.Log("ExtraHealthUsed");
+        }
+        public void OnExtraShieldUsed()
+        {
+            _playerData.RemoveShield(1);
+            Debug.Log("ExtraShieldUsed");
+
+
+        }
+        public void OnExtraPlanksUsed()
+        {
+            _playerData.RemovePlank(1);
+            Debug.Log("ExtraPlanksUsed");
+
+
+        }
+        public void OnExtraGumUsed()
+        {
+            _playerData.RemoveGum(1);
+            Debug.Log("ExtraGumUsed");
+
 
         }
 
@@ -172,7 +207,7 @@ namespace Daxi.VisualLayer.Player
         {
             if(_finished)
             {
-                _rb.velocity = Vector2.Lerp(_rb.velocity,Vector2.zero,Time.deltaTime*3);
+                _rb.velocity = Vector2.Lerp(_rb.velocity,Vector2.zero,Time.deltaTime*2);
                 return;
             }
             if (!Active)
@@ -349,6 +384,11 @@ namespace Daxi.VisualLayer.Player
             _playerAnimation.AnimateLose();
             await UniTask.Delay(6000);
 
+        }
+
+        public void OnReachedFinishLine()
+        {
+            _playersCameraController.StopFollow();
         }
 
 

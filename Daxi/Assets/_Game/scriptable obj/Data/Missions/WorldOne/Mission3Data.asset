@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Mission3Data
   m_EditorClassIdentifier: 
   _description: Collect 10 candy stick
-  _obsticles: []
-  _enemies: []
   _items:
   - {fileID: 11400000, guid: 410ea24e2bd849e47b11520ce1daaabe, type: 2}
   _itemsCountNumber: {fileID: 21300000, guid: 208ae96f3086bde428b10fba41e9f5fa, type: 3}
   _itemsCount: 10
+  _mode: 0
+  _popupSprite: {fileID: 21300000, guid: 01b34d2bcd7470744a56bd05e63b8500, type: 3}

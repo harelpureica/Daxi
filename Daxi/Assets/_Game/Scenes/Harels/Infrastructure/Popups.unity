@@ -97,8 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000006, guid: 74c982497a3ac074b990adf2fa253919, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 82b77b3f8dc12b341bb10cf09e53fcbb, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -142,6 +142,8 @@ GameObject:
   - component: {fileID: 21884471}
   - component: {fileID: 21884473}
   - component: {fileID: 21884472}
+  - component: {fileID: 21884474}
+  - component: {fileID: 21884475}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -172,6 +174,8 @@ MonoBehaviour:
   - {fileID: 21884470}
   - {fileID: 21884471}
   - {fileID: 21884473}
+  - {fileID: 21884474}
+  - {fileID: 21884475}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -322,6 +326,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _controller: {fileID: 21884472}
+--- !u!114 &21884474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21884462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3903171fae724dd4cb81a8eecd1ad2df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 7763924676050888076, guid: 30cacac18efdb0940903f522c9800421, type: 3}
+--- !u!114 &21884475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21884462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15550ee10f5c7de4faccaf68398220ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 7495809597857173975, guid: b6c76e00bd5f06e4bbf096096d9f9102, type: 3}
 --- !u!1 &382734668
 GameObject:
   m_ObjectHideFlags: 0

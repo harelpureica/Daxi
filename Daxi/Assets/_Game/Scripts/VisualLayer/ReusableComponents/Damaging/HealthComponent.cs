@@ -18,6 +18,8 @@ namespace Daxi.VisualLayer.ReusableComponents.Damaging
         #region Fields           
         private int _health;
 
+        private int _extrahealth;
+
         private bool _initialized;
         #endregion
 

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Mission5Data
   m_EditorClassIdentifier: 
   _description: Collect 3 chocolates
-  _obsticles: []
-  _enemies: []
   _items:
   - {fileID: 11400000, guid: ac873dfc96a5fa5459cb8f1778831094, type: 2}
   _itemsCountNumber: {fileID: 21300000, guid: ac738636c7d734844a83b8f17ca57cb9, type: 3}
   _itemsCount: 3
+  _mode: 0
+  _popupSprite: {fileID: 21300000, guid: 9a300e5db106b0044b5c31fa5e72c725, type: 3}

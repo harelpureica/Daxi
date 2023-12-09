@@ -18,14 +18,17 @@ namespace Daxi.DataLayer.MissionsData
         [SerializeField]
         private Sprite _itemsCountNumber;
 
-        [SerializeField]
-        private float _popupsLayoutScaleMultiplier=1f;
 
         [SerializeField]
         private int _itemsCount;
+  
 
         [SerializeField]
         private MissionMode _mode;
+
+        [SerializeField]
+        private Sprite _popupSprite;
+
         public enum MissionMode { collectables, dammaging, letters }
 
         #endregion
@@ -41,7 +44,8 @@ namespace Daxi.DataLayer.MissionsData
 
         public MissionMode Mode => _mode;
 
-        public float PopupsLayoutScaleMultiplier => _popupsLayoutScaleMultiplier; 
+        public Sprite PopupSprite => _popupSprite;
+
 
         #endregion
 

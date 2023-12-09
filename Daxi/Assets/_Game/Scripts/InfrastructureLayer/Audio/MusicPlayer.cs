@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 namespace Daxi.InfrastructureLayer.Audio
 {
@@ -15,7 +16,13 @@ namespace Daxi.InfrastructureLayer.Audio
         private AudioClip _menusMusic;
 
         [SerializeField]
-        private AudioClip _worldMusic;
+        private AudioClip _worldOneMusic;
+
+        [SerializeField]
+        private AudioClip _worldTwoMusic;
+
+        [SerializeField]
+        private AudioClip _worldThreeMusic;
 
         [SerializeField]
         private AudioSource _audioSource;
@@ -75,18 +82,42 @@ namespace Daxi.InfrastructureLayer.Audio
             if (_audioSource.isPlaying)
             {
                 await TransitionVolume(0f, 0.5F);
-                _audioSource.Stop();
+                _audioSource.Stop();               
             }
 
             _audioSource.clip = clip;
             _audioSource.Play();
-            await TransitionVolume(1f, 0.5F);
+            await TransitionVolume(0.35f, 0.5F);
            
         }
         public  void PlayWorlds()
         {
+
+            var first8CharcterOfScene = SceneManager.GetActiveScene().name.Remove(7);
+            Debug.Log(first8CharcterOfScene);
+            var clip = _worldOneMusic;
+            switch (first8CharcterOfScene)
+            {
+                case "WorldOn":
+                    clip = _worldOneMusic;
+                    break;
+
+                case "WorldTw":
+                    clip = _worldTwoMusic;
+                    break;
+
+                case "WorldTh":
+                    clip = _worldThreeMusic;
+                    break;
+
+                    default:
+                    Debug.Log("eror - musicplayer");
+                    break;
+
+
+            }
             _isPlaying = true;
-            PlayClip(_worldMusic);
+            PlayClip(clip);
         }
         public async UniTask Stop()
         {

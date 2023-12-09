@@ -1,9 +1,10 @@
-﻿using Daxi.InfrastructureLayer.Popups;
+﻿using Daxi.DataLayer.Player;
+using Daxi.InfrastructureLayer.Popups;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Assets._Game.Scripts.InfrastructureLayer.Popups.DataSetter
+namespace Daxi.InfrastructureLayer.Popups.DataSetter
 {
     public class DataSetterPopup:PopupBase
     {
@@ -11,6 +12,18 @@ namespace Assets._Game.Scripts.InfrastructureLayer.Popups.DataSetter
         public class DataSetterPopupFactory:PlaceholderFactory<DataSetterPopup>
         {
 
+        }
+        [Inject]
+        private PlayerData playerData;
+        public void Initialize()
+        {
+            _characterIndex.value = playerData.CharacterIndex;
+            _unlockedLevels.value = playerData.UnlockedLevels;
+            _gums.value = playerData.Gums;
+            _planks.value = playerData.Planks;
+            _shields.value = playerData.Shields;
+            _hearts.value = playerData.Hearts;
+            _petIndex.value = playerData.PetIndex;
         }
         #endregion
 

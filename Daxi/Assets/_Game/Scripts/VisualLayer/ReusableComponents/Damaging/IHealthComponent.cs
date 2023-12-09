@@ -6,6 +6,8 @@ namespace Daxi.VisualLayer.ReusableComponents.Damaging
 {
     public interface IHealthComponent
     {
+        public event Action OnExtraHealthUsed;
+
         void TakeDamage(int amount);
 
         void AddHealth(int amount);

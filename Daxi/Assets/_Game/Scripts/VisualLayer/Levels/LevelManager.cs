@@ -156,7 +156,11 @@ namespace Daxi.VisualLayer.Levels
             await UniTask.Delay(500);
             _monoService.DestroyObject(missionPopup.gameObject);
             await _countdownComponent.TextCountDown();
-            MusicPlayer.Instance.PlayWorlds();
+            if(MusicPlayer.Instance!=null)
+            {
+                MusicPlayer.Instance.PlayWorlds();
+
+            }
             _playerManager.Active = true;
             _levelState = LevelState.run;
             _missionsTrackerUi.SubscribeToButton(OnMissionButtonPressed);
@@ -195,7 +199,10 @@ namespace Daxi.VisualLayer.Levels
             {
                 return;
             }
-            MusicPlayer.Instance.Pause();
+            if(MusicPlayer.Instance!=null)
+            {
+                MusicPlayer.Instance.Pause();
+            }
             _levelState = LevelState.pause;
             _playerManager.Active = false;
             var popup = _pausePopupFactory.Create();            
@@ -214,7 +221,10 @@ namespace Daxi.VisualLayer.Levels
             if (popup.PlayerClickedClose)
             {
                 await _countdownComponent.NumbersCountDown();
-                MusicPlayer.Instance.Resume();
+                if(MusicPlayer.Instance!=null)
+                {
+                    MusicPlayer.Instance.Resume();
+                }
                 _levelState = LevelState.run;
                 _playerManager.Active = true;
                 _playerManager.SetInvinsible(2500);
@@ -279,7 +289,8 @@ namespace Daxi.VisualLayer.Levels
 
         }
         public void OnReachedFinishLine()
-        {            
+        {
+            _playerManager.OnReachedFinishLine();
             EndLevel(true);
         }       
        
@@ -361,14 +372,20 @@ namespace Daxi.VisualLayer.Levels
             _playerManager.Active = false;
             if (win)
             {
-                await MusicPlayer.Instance.Stop();
+                if (MusicPlayer.Instance != null)
+                {
+                    await MusicPlayer.Instance.Stop();
+                }
                 _audioSource.PlayOneShot(winLevelClip);
                 await _playerManager.Win();
                 
             }
             else
             {
-                await MusicPlayer.Instance.Stop();
+                if(MusicPlayer.Instance !=null)
+                {
+                    await MusicPlayer.Instance.Stop();
+                }
                 _audioSource.PlayOneShot(loseLevelClip);
                 await _playerManager.Lose();
             }

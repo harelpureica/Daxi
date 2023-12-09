@@ -21,3 +21,4 @@ MonoBehaviour:
   _itemsCountNumber: {fileID: 0}
   _itemsCount: 4
   _mode: 2
+  _popupSprite: {fileID: 21300000, guid: 34e480476acf66e45b19bee3bdef5af0, type: 3}

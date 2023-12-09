@@ -151,11 +151,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - WorldTwo
-  - m_GUID: b390683fdff8eba4e8c98fd64102b5b6
-    m_Address: Assets/_Game/Graphics/Harel/WorldTwo/Ground/Group 5372.png
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - WorldTwo
   - m_GUID: 7980df32b7202774a9f9deb0d9ef07e9
     m_Address: Assets/_Game/Graphics/Harel/WorldTwo/Ground/Group 5374.png
     m_ReadOnly: 0
@@ -211,6 +206,10 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: b146a7fe52a71374bb5d9374f385a513
     m_Address: Assets/_Game/Graphics/Harel/WorldThree/Ground/Rectangle 627.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b390683fdff8eba4e8c98fd64102b5b6
+    m_Address: Assets/_Game/Graphics/Harel/WorldTwo/Ground/Group 5372.png
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

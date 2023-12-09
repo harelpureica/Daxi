@@ -51,14 +51,32 @@ namespace Daxi.VisualLayer.Player.PowerUps
 
         private int _planksAmount;
 
+        private int _extraGumAmount;
+
+        private int _extraShieldAmount;
+
+        private int _extraPlanksAmount;
+        #endregion
+
+        #region Events
+        public event Action OnExtraPlankUsed;
+
+        public event Action OnExtraShieldUsed;
+
+
+        public event Action OnExtraGumUsed;
+
         #endregion
 
         #region Methods
-        public void SetData(PlayerData playerData)
+        public void InitializeData(PlayerData playerData)
         {
-            _gumAmount = playerData.Gums;
-           _planksAmount= playerData.Planks;
-            _shieldAmount= playerData.Shields;
+            _extraGumAmount = playerData.Gums;
+            _extraPlanksAmount = playerData.Planks;
+            _extraShieldAmount = playerData.Shields;
+            _shieldAmount = playerData.Shields;
+            _planksAmount = playerData.Planks;
+            _extraGumAmount = playerData.Gums;
             _playerPowerUpUi.SetData(_gumAmount, _shieldAmount, _planksAmount);
         }
         public void AddPowerUp()
@@ -69,7 +87,7 @@ namespace Daxi.VisualLayer.Player.PowerUps
             }
             var powerupAdded = false;
             while(!powerupAdded)
-            {
+            {               
                 var random = UnityEngine.Random.Range(0, 3);
                 switch (random)
                 {
@@ -124,7 +142,15 @@ namespace Daxi.VisualLayer.Player.PowerUps
                 case "Plank":
                    
                     Plank();
-                    _planksAmount--;                   
+                    if (_planksAmount <= _extraPlanksAmount)
+                    {
+                        _extraPlanksAmount--;
+                        OnExtraPlankUsed?.Invoke();
+
+                    }
+                   
+                    _planksAmount--;
+
                     break;
 
                 case "Gum":
@@ -135,7 +161,13 @@ namespace Daxi.VisualLayer.Player.PowerUps
                     _gumAvailable = false;
                     Gum();
                     await UpdateButtonsFillAmount(powerup, _settings.GumChargingTime);
+                    if(_gumAmount<=_extraGumAmount)
+                    {
+                        _extraGumAmount--;
+                        OnExtraGumUsed?.Invoke();
+                    }
                     _gumAmount--;
+                    
                     await _playerAnimationComponent.AnimateEndGum();
                     _gumAvailable = true;
                     break;
@@ -148,6 +180,11 @@ namespace Daxi.VisualLayer.Player.PowerUps
                     _shieldAvailable = false;
                     Shield();
                     await UpdateButtonsFillAmount(powerup, _settings.ShieldChargingTime);
+                    if (_shieldAmount <=_extraShieldAmount)
+                    {
+                        _extraShieldAmount--;
+                        OnExtraShieldUsed?.Invoke();
+                    }
                     _shieldAmount--;
                     await _shieldComponent.EndShield();
                     _shieldAvailable = true;

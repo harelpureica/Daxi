@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 989896545e20fa5459888241a5652d74, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  _characterIndex: 0
-  _unlockedLevels: 18
+  _character: 0
+  _unlockedLevels: 1
   _gums: 0
   _planks: 0
   _shields: 0
   _hearts: 0
   _petIndex: 0
+  _unlockedCharacters: 0
+  _unlockedPets: 0

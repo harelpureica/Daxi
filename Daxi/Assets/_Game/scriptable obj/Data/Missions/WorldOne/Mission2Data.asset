@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Mission2Data
   m_EditorClassIdentifier: 
   _description: Collect 7 of these
-  _obsticles: []
-  _enemies: []
   _items:
   - {fileID: 11400000, guid: bc5a567ff5e43754aa47130051cb4dde, type: 2}
   - {fileID: 11400000, guid: b700da02b513e3043a1187c83ba49733, type: 2}
   _itemsCountNumber: {fileID: 21300000, guid: 7d84faf89e53d8148ac7e0a3e2c8f357, type: 3}
   _itemsCount: 7
+  _mode: 0
+  _popupSprite: {fileID: 21300000, guid: 8f6916c0e1fc3724ea3e89d2f5ded144, type: 3}

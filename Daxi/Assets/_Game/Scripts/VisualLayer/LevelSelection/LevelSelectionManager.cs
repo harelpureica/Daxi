@@ -42,10 +42,12 @@ namespace Daxi.VisualLayer.LevelSelection
 
         public void Initialize()
         {
+            /*
            if(! MusicPlayer.IsPlaying)
            {
                 MusicPlayer.Instance.PlayMenus();
            }
+            */
             _backButton.onClick.AddListener(OnBackClick);
             var startLevelIndex = 0;
             var endLevelIndex = 5;

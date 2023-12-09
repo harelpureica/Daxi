@@ -1,34 +1,50 @@
 ﻿
-using Assets._Game.Scripts.InfrastructureLayer.Popups.DataSetter;
 using Cysharp.Threading.Tasks;
 using Daxi.DataLayer.LevelsData;
 using Daxi.DataLayer.Player;
 using Daxi.InfrastructureLayer.Audio;
 using Daxi.InfrastructureLayer.Loading;
 using Daxi.InfrastructureLayer.MonoUtils;
+using Daxi.InfrastructureLayer.Popups.ConfirmedTerms;
+using Daxi.InfrastructureLayer.Popups.DataSetter;
+using Daxi.InfrastructureLayer.Popups.SettingsPopup;
 using Daxi.InfrastructureLayer.Popups.Terms;
 using Daxi.InfrastructureLayer.Popups.VerifyAge;
 using Daxi.InfrastructureLayer.ScenesManagment;
+using Daxi.Storage;
 using Daxi.VisualLayer.PostProcessing;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 using Zenject;
-using static Assets._Game.Scripts.InfrastructureLayer.Popups.DataSetter.DataSetterPopup;
-using static Daxi.InfrastructureLayer.Popups.VerifyAge.VerifyAgePopup;
 
 namespace Daxi.VisualLayer.MenuScene
 {
     public class MenuSceneManager : IInitializable
     {
-        #region Fields
+
+        #region Conts
+        private const string PlayerAgreedToTermsPreff = "PlayerAgreedToTerms";
+        #endregion
+
+        #region Injects
+
+
+        [Inject]
+        private SettingsPopup.SettingsPopupFactory settingsPopupFactory;
+
         [Inject(Id ="Play")]
         private Button _playButton;
 
         [Inject(Id ="Shop")]
         private Button _shopButton;
+
+        [Inject]
+        private StorageManager _storageManager;
 
         [Inject]
         private VerifyAgePopup.VerifyAgePopupFactory _verifyAgePopupFactory;
@@ -66,6 +82,16 @@ namespace Daxi.VisualLayer.MenuScene
         [Inject]
         private VolumeController _volumeController;
 
+        [Inject(Id = "Log")]
+        private TextMeshProUGUI _logText;
+
+        [Inject(Id = "Settings")]
+        private Button _settingsBtn;
+
+        [Inject]
+        private ConfirmedTermsPopup.ConfirmedTermsPopupFactory _confirmedTermsPopupFactory;
+
+
         #endregion
 
         #region Methods
@@ -87,58 +113,90 @@ namespace Daxi.VisualLayer.MenuScene
             currentActivity.Call("startActivity", chooser);
 #endif
         }
+        public void OpenGmailForContacting()
+        {
+            string email = "Wildgeex.support@gmail.com";  // Replace with your email address
+            string subject = "WildGeex encourage you to give us feedback from daxi so we can Improve the game ";
+            string body = "Hello, I have some feedback for your app...";
+
+            string mailtoLink = "mailto:" + email +
+                                "?subject=" + UnityWebRequest.EscapeURL(subject) +
+                                "&body=" + UnityWebRequest.EscapeURL(body);
+
+            Application.OpenURL(mailtoLink);
+        }
         public async void Initialize()
         {
-            if(!MusicPlayer.IsPlaying)
+            if (!MusicPlayer.IsPlaying)
             {
                 MusicPlayer.Instance.PlayMenus();
             }
+            await UniTask.Delay(500);
+            _settingsBtn.onClick.AddListener(OnSettingsClick);
             _shareButton.onClick.RemoveAllListeners();
             _shareButton.onClick.AddListener(ShareGame);
-            var playerClickedCloseOnTerms = false;
-            while (!playerClickedCloseOnTerms)
+            if(!PlayerPrefs.HasKey(PlayerAgreedToTermsPreff))
             {
-                var verifyAgePopup = _verifyAgePopupFactory.Create();
-                verifyAgePopup.Open();
-                _volumeController.SetDof(true);
+                var playerClickedCloseOnTerms = false;
+                while (!playerClickedCloseOnTerms)
+                {
+                    var verifyAgePopup = _verifyAgePopupFactory.Create();
+                    verifyAgePopup.Open();
+                    _volumeController.SetDof(true);
 
-                while (!verifyAgePopup.PlayerClickedClose)
-                {
-                    await UniTask.Yield();
+                    while (!verifyAgePopup.PlayerClickedClose)
+                    {
+                        await UniTask.Yield();
+                    }
+                    verifyAgePopup.Close();
+                    _volumeController.SetDof(false);
+                    await UniTask.Delay(500);
+                    _service.DestroyObject(verifyAgePopup.gameObject);
+                    var termsPopup = _termsPopupFactory.Create();
+                    termsPopup.Open();
+                    _volumeController.SetDof(true);
+                    while (!termsPopup.PlayerClickedClose && !termsPopup.PlayerClikedBack)
+                    {
+                        await UniTask.Yield();
+                    }
+                    playerClickedCloseOnTerms = termsPopup.PlayerClickedClose;
+                    if(playerClickedCloseOnTerms)
+                    {
+                        PlayerPrefs.SetString(PlayerAgreedToTermsPreff, PlayerAgreedToTermsPreff);
+
+                    }
+                    termsPopup.Close();
+                    _volumeController.SetDof(false);
+                    await UniTask.Delay(500);
+                    _service.DestroyObject(termsPopup.gameObject);
                 }
-                verifyAgePopup.Close();
-                _volumeController.SetDof(false);
-                await UniTask.Delay(500);
-                _service.DestroyObject(verifyAgePopup.gameObject);
-                var termsPopup = _termsPopupFactory.Create();
-                termsPopup.Open();
-                _volumeController.SetDof(true);
-                while (!termsPopup.PlayerClickedClose && !termsPopup.PlayerClikedBack)
-                {
-                    await UniTask.Yield();
-                }
-                playerClickedCloseOnTerms=termsPopup.PlayerClickedClose;
-                termsPopup.Close();
-                _volumeController.SetDof(false);
-                await UniTask.Delay(500);
-                _service.DestroyObject(termsPopup.gameObject);
             }
            
+           
 
-            var dataPopup=_dataSetterPopupFactory.Create();
+          
+            
+            _shopButton.onClick.AddListener(OnShopClick);
+            _playButton.onClick.AddListener(OnPlayClick);
+        }
+        public async UniTask CheatPopup()
+        {
+            var dataPopup = _dataSetterPopupFactory.Create();
             dataPopup.Open();
             _volumeController.SetDof(true);
+            dataPopup.Initialize();
             while (!dataPopup.PlayerClickedClose)
             {
                 await UniTask.Yield();
             }
-            _playerData.Initialize(dataPopup.CharacterIndex, dataPopup.UnlockedLevels, dataPopup.Gums, dataPopup.Planks, dataPopup.Shields, dataPopup.Hearts,dataPopup.PetIndex);
+            _playerData.SetDataFromPopup(dataPopup.CharacterIndex, dataPopup.UnlockedLevels, dataPopup.Gums, dataPopup.Planks, dataPopup.Shields, dataPopup.Hearts, dataPopup.PetIndex);
             for (int i = 0; i < levelsDatas.Count; i++)
             {
-                if(i < dataPopup.UnlockedLevels)
+                if (i < dataPopup.UnlockedLevels)
                 {
                     levelsDatas[i].Locked = false;
-                }else
+                }
+                else
                 {
                     levelsDatas[i].Locked = true;
                 }
@@ -147,8 +205,53 @@ namespace Daxi.VisualLayer.MenuScene
             _volumeController.SetDof(false);
             await UniTask.Delay(500);
             _service.DestroyObject(dataPopup.gameObject);
-            _shopButton.onClick.AddListener(OnShopClick);
-            _playButton.onClick.AddListener(OnPlayClick);
+        }
+
+        public async void OnSettingsClick()
+        {
+            _settingsBtn.interactable = false;
+            var popup=settingsPopupFactory.Create();
+            popup.Open();            
+            while(!popup.ConfirmedCheat&&!popup.PlayerClickedClose&&!popup.ContactButtonClicked&&!popup.TermsButtonClicked&&!popup.FeedBackButtonClicked)
+            {
+                await UniTask.Yield();
+
+            }  
+            popup.Close();
+            if (popup.TermsButtonClicked)
+            {
+                await ConfirmedTermsPopupRoutine();
+            }
+            if (popup.FeedBackButtonClicked)
+            {
+                Application.OpenURL(_playStoreURL);
+
+            }
+            if (popup.ContactButtonClicked)
+            {
+                OpenGmailForContacting();
+
+            }
+            if (popup.ConfirmedCheat)
+            {
+                await CheatPopup();
+
+            }
+            _service.DestroyObject(popup.gameObject);
+            _settingsBtn.interactable = true;
+
+        }
+
+        private async UniTask ConfirmedTermsPopupRoutine()
+        {
+            var popup = _confirmedTermsPopupFactory.Create();
+            popup.Open();
+            while(!popup.PlayerClickedClose)
+            {
+                await UniTask.Yield();
+            }
+            popup.Close();
+            _service.DestroyObject(popup.gameObject);
         }
 
         public async void OnPlayClick()

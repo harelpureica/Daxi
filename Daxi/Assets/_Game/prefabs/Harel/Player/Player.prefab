@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28930ab36eddc31428a6725c1144643b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _heartSprite: {fileID: 21300000, guid: 1ae2bdb211a556b41aa1c45558a104a5, type: 3}
+  _heartSprite: {fileID: 21300000, guid: b2661fbe44715ac4fb7528443acc300d, type: 3}
   _imageIndicatorPrefab: {fileID: 5342461373988700749, guid: fa78c541fb1fe8e48b902edfd28c0577, type: 3}
   _parentLayout: {fileID: 6721979325784861439}
   _extraHeartsText: {fileID: 2703068460760625744}
@@ -6511,7 +6511,11 @@ PrefabInstance:
     - target: {fileID: 4467897432451427418, guid: fa78c541fb1fe8e48b902edfd28c0577, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 470ae37e2cd12f3448dc648df39f00cc, type: 3}
+      objectReference: {fileID: 21300000, guid: b2661fbe44715ac4fb7528443acc300d, type: 3}
+    - target: {fileID: 4467897432451427418, guid: fa78c541fb1fe8e48b902edfd28c0577, type: 3}
+      propertyPath: m_Color.a
+      value: 0.39215687
+      objectReference: {fileID: 0}
     - target: {fileID: 4467897432451427418, guid: fa78c541fb1fe8e48b902edfd28c0577, type: 3}
       propertyPath: m_PreserveAspect
       value: 1
@@ -6747,7 +6751,11 @@ PrefabInstance:
     - target: {fileID: 4467897432451427418, guid: fa78c541fb1fe8e48b902edfd28c0577, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 470ae37e2cd12f3448dc648df39f00cc, type: 3}
+      objectReference: {fileID: 21300000, guid: b2661fbe44715ac4fb7528443acc300d, type: 3}
+    - target: {fileID: 4467897432451427418, guid: fa78c541fb1fe8e48b902edfd28c0577, type: 3}
+      propertyPath: m_Color.a
+      value: 0.39215687
+      objectReference: {fileID: 0}
     - target: {fileID: 4467897432451427418, guid: fa78c541fb1fe8e48b902edfd28c0577, type: 3}
       propertyPath: m_PreserveAspect
       value: 1
@@ -6861,7 +6869,11 @@ PrefabInstance:
     - target: {fileID: 4467897432451427418, guid: fa78c541fb1fe8e48b902edfd28c0577, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 470ae37e2cd12f3448dc648df39f00cc, type: 3}
+      objectReference: {fileID: 21300000, guid: b2661fbe44715ac4fb7528443acc300d, type: 3}
+    - target: {fileID: 4467897432451427418, guid: fa78c541fb1fe8e48b902edfd28c0577, type: 3}
+      propertyPath: m_Color.a
+      value: 0.39215687
+      objectReference: {fileID: 0}
     - target: {fileID: 4467897432451427418, guid: fa78c541fb1fe8e48b902edfd28c0577, type: 3}
       propertyPath: m_PreserveAspect
       value: 1

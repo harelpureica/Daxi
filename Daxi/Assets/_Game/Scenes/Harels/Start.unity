@@ -462,7 +462,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _menusMusic: {fileID: 8300000, guid: fd6e4994bc593f740bc4647049dd6a71, type: 3}
-  _worldMusic: {fileID: 8300000, guid: 0d115a2141c30054fa6abbd535b3df71, type: 3}
+  _worldOneMusic: {fileID: 8300000, guid: 9fe82c388d6c62447bff1fbaf3195015, type: 3}
+  _worldTwoMusic: {fileID: 8300000, guid: 09da92d2c3dda8e47881a754642ade53, type: 3}
+  _worldThreeMusic: {fileID: 8300000, guid: 85b0c06166d1d5e46964d0492084e2cd, type: 3}
   _audioSource: {fileID: 658954643}
 --- !u!4 &658954642
 Transform:
@@ -491,7 +493,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 69b84109bb3588e4ba081ee67d8c2d4b, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0

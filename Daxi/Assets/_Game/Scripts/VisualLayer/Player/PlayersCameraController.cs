@@ -14,7 +14,7 @@ namespace Daxi.VisualLayer.Player
         private Camera _camera;
 
         [Inject]
-        private SignalBus _signalBus;
+        private SignalBus _signalBus;        
 
         [Inject]
         private PlayersCameraControllerSettings _settings;
@@ -43,7 +43,8 @@ namespace Daxi.VisualLayer.Player
             _target = player.transform;
             _playerManager = player;
             _camTransfrom=_camera.transform;
-            _offset = _settings.CameraOffset;
+            _offset = _settings.CameraOffset;            
+
         }
 
         public void FixedTick()
@@ -106,6 +107,11 @@ namespace Daxi.VisualLayer.Player
                 await UniTask.Yield();
             }
             _offset = wantedOffset;
+        }
+
+        public void StopFollow()
+        {
+            _target = null;
         }
         #endregion
 

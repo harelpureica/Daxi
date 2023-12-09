@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 2962695210147917552}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.9606304, y: 0.9606304, z: 0.9606304}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2962695210647615696}
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 14
-  m_Sprite: {fileID: 21300000, guid: 4e82be87638bc3b419549407ef07c4d2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cea2dc29a635b754da2a5da4fcbe5586, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.6039216}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 3034313951034214529}
   - component: {fileID: 243674540762544772}
   - component: {fileID: -6147196544467624628}
-  - component: {fileID: 4256484340463755102}
+  - component: {fileID: 2713124390039706216}
   m_Layer: 8
   m_Name: WaterSmall
   m_TagString: Enemy
@@ -114,7 +114,7 @@ Transform:
   m_GameObject: {fileID: 2962695210647615702}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.0100098, y: 0.25, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8758, y: 0.8758, z: 0.8758}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2962695210147917553}
@@ -162,7 +162,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -4
-  m_Sprite: {fileID: 21300000, guid: 4e82be87638bc3b419549407ef07c4d2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 25391dce3c191f347a465b6baabcb0bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -219,8 +219,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damagingComponent: {fileID: 243674540762544772}
---- !u!61 &4256484340463755102
-BoxCollider2D:
+--- !u!60 &2713124390039706216
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -236,12 +236,41 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.66, y: 0.91}
+    oldSize: {x: 4.52, y: 1.2}
     newSize: {x: 6.78, y: 1.8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 3.65, y: 0.95}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 2.19, y: 0.58}
+      - {x: 2.1299999, y: 0.59999996}
+      - {x: 1.77, y: 0.59999996}
+      - {x: 1.7199999, y: 0.59}
+      - {x: 1.49, y: 0.53999996}
+      - {x: 1.28, y: 0.57}
+      - {x: 1.15, y: 0.59999996}
+      - {x: 0.87, y: 0.59999996}
+      - {x: 0.65, y: 0.53999996}
+      - {x: 0.48, y: 0.53}
+      - {x: 0.34, y: 0.59}
+      - {x: 0.25, y: 0.59999996}
+      - {x: 0.089999996, y: 0.59999996}
+      - {x: -0.04, y: 0.57}
+      - {x: -0.25, y: 0.5}
+      - {x: -0.62, y: 0.57}
+      - {x: -0.84999996, y: 0.56}
+      - {x: -1.1, y: 0.51}
+      - {x: -1.28, y: 0.5}
+      - {x: -1.48, y: 0.56}
+      - {x: -1.65, y: 0.56}
+      - {x: -1.8199999, y: 0.51}
+      - {x: -1.9499999, y: 0.5}
+      - {x: -2.1499999, y: 0.57}
+      - {x: -2.26, y: 0.59999996}
+      - {x: -2.26, y: -0.59999996}
+      - {x: 0.53999996, y: -0.59999996}
+      - {x: 0.53999996, y: -0.58}
+      - {x: 2.26, y: -0.58}
+      - {x: 2.26, y: 0.56}
