@@ -35,6 +35,8 @@ namespace Daxi.VisualLayer.Player.PowerUps
 
         [Inject]
         private PlayerAnimationComponent _playerAnimationComponent;
+
+        
        
         #endregion
 
@@ -116,7 +118,7 @@ namespace Daxi.VisualLayer.Player.PowerUps
                         break;
                 }
             }
-                                          
+            _playerManager.PlayClip(PlayersClipInfo.PlayersClipType.power);                                          
             _playerPowerUpUi.SetData(_gumAmount,_shieldAmount,_planksAmount);
 
         }
@@ -141,6 +143,7 @@ namespace Daxi.VisualLayer.Player.PowerUps
             {
                 case "Plank":
                    
+                    
                     Plank();
                     if (_planksAmount <= _extraPlanksAmount)
                     {
@@ -186,13 +189,13 @@ namespace Daxi.VisualLayer.Player.PowerUps
                         OnExtraShieldUsed?.Invoke();
                     }
                     _shieldAmount--;
+                    _playerManager.PlayClip(PlayersClipInfo.PlayersClipType.endShield);
                     await _shieldComponent.EndShield();
                     _shieldAvailable = true;
 
 
                     break;
             }
-            _playerPowerUpUi.SetData(_gumAmount, _shieldAmount, _planksAmount);
           
 
         }
@@ -216,6 +219,7 @@ namespace Daxi.VisualLayer.Player.PowerUps
         {
             _shieldComponent.Shield();
             _playerManager.HaveShield = true;
+            _playerManager.PlayClip(PlayersClipInfo.PlayersClipType.shield);
             await UniTask.Delay(TimeSpan.FromSeconds(_settings.ShieldTime));
             var colidersNear= Physics2D.OverlapCircleAll(_playerManager.transform.position, 2);
             var damagingElemetnsNear = 0;

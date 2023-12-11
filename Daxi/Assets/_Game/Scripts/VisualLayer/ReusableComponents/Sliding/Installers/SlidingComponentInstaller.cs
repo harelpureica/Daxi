@@ -23,7 +23,7 @@ namespace Daxi.VisualLayer.ReusableComponents.Sliding.Installers
                .AsSingle();
 
             Container
-                .Bind<SlidingComponent>()
+                .BindInterfacesAndSelfTo<SlidingComponent>()
                 .AsSingle();
 
             Container

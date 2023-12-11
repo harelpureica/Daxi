@@ -51,6 +51,7 @@ namespace Daxi.VisualLayer.ReusableComponents.Jumping
             _rb.angularVelocity = 0;
             if (_grounded)
             {
+                _playerManager.PlayClip(PlayersClipInfo.PlayersClipType.jump);
                 _rb.velocity = new Vector2(_settings.JumpForce * 0.43f, _settings.JumpForce);                
                 _jumps++;
                 HandleRecentlyJumped();
@@ -58,6 +59,7 @@ namespace Daxi.VisualLayer.ReusableComponents.Jumping
             }
             else if(_jumps<=_settings.JumpTimes)
             {
+                _playerManager.PlayClip(PlayersClipInfo.PlayersClipType.jump);
                 _rb.velocity = new Vector2(_settings.JumpForce * 0.43f, _settings.JumpForce*0.9f);
                 _jumps++;
                 HandleRecentlyJumped();

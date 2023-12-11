@@ -12,6 +12,7 @@ using Daxi.VisualLayer.ReusableComponents.Movement;
 using Daxi.VisualLayer.ReusableComponents.Sliding;
 using Daxi.VisualLayer.UI.PlayerUI;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -76,12 +77,15 @@ namespace Daxi.VisualLayer.Player
         [Inject]
         private Camera _camera;
 
+        [Inject]
+        private List<PlayersClipInfo> _clipsInfos;
+
 
         #endregion
 
         #region Fields
 
-        AudioSource _audioSource;
+        private AudioSource _audioSource;
 
         private PlayerData _playerData;
 
@@ -102,9 +106,12 @@ namespace Daxi.VisualLayer.Player
         #endregion
 
         #region Properties
-        public bool Active { get => _active; set => _active = value; }
 
         public PlayerPowerUpComponent MyPowerUpComponent =>_playerPowerUpcomponent;
+
+        public AudioSource AudioSource => _audioSource;
+
+        public bool Active { get => _active; set => _active = value; }
 
         public bool HaveGum { get => _haveGum; set => _haveGum = value; }
         public bool HaveShield { get => _haveShield; set => _haveShield = value; }
@@ -321,10 +328,6 @@ namespace Daxi.VisualLayer.Player
             _jumpingComponent.Jump();
             if(_jumpingComponent.RecentlyJumped)
             {
-                if(!_audioSource.isPlaying)
-                {
-                    _audioSource.Play();
-                }
                 _playerAnimation.AnimateJump();
             }
         }
@@ -336,6 +339,7 @@ namespace Daxi.VisualLayer.Player
             }           
             _rb.velocity = Vector2.zero;
             _rb.AddForce(((Vector2.up )+(Vector2.right*0.2f))*args.SpringForce, ForceMode2D.Impulse);
+            PlayClip(PlayersClipInfo.PlayersClipType.spring);
         }
         public void Slide()
         {
@@ -350,7 +354,18 @@ namespace Daxi.VisualLayer.Player
             }
 
         }
-
+        public void PlayClip(PlayersClipInfo.PlayersClipType type)
+        {
+            for (int i = 0; i < _clipsInfos.Count; i++)
+            {
+                if (type == _clipsInfos[i].MyType)
+                {
+                    _audioSource.PlayOneShot(_clipsInfos[i].Clip);
+                    Debug.Log(type);
+                    break;
+                }
+            }               
+        }
         public void StopSlide()
         {
             if (!_active || _haveGum)
@@ -393,5 +408,12 @@ namespace Daxi.VisualLayer.Player
 
 
         #endregion
+    }
+    [Serializable]
+    public struct PlayersClipInfo
+    {
+        public enum PlayersClipType { slide, power, gum,endgum,shield,endShield,spring,jump,collect};
+        public PlayersClipType MyType;
+        public AudioClip Clip;
     }
 }

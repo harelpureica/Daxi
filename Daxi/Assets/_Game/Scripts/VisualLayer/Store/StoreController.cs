@@ -3,14 +3,17 @@
 using Cysharp.Threading.Tasks;
 using Daxi.DataLayer.Player;
 using Daxi.DataLayer.StoreData;
+using Daxi.InfrastructureLayer.ScenesManagment;
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace Daxi.VisualLayer.Store
 {
-    public class StoreController
+    public class StoreController:IInitializable
     {
         #region Injects
         [Inject]
@@ -28,25 +31,92 @@ namespace Daxi.VisualLayer.Store
         [Inject(Id = "Skins")]
         private List<StoreItem> _skins;
 
+
+        [Inject(Id = "Hearts")]
+        private Button _heartBtn;
+
+        [Inject(Id = "Powers")]
+        private Button _powersBtn;
+
+        [Inject(Id = "Pets")]
+        private Button _petsBtn;
+
+        [Inject(Id = "Skins")]
+        private Button _skinsBtn;
+
+        [Inject(Id = "Select")]
+        private Button _selectBtn;
+
+        [Inject]
+        private StoreMenu _menu;
+
+        [Inject(Id ="Back")]
+        private Button _backBtn;
+
+        [Inject]
+        private IScenesLoader _scenesLoader;
+
         public enum StoreState { skins,powers,pets,hearts}
 
         private StoreState _state;
         #endregion
 
         #region Methods
-        public void SwitchState (StoreState storeState)
+
+        public void Initialize()
+        {
+            _heartBtn.onClick.AddListener(() => SwitchState(StoreState.hearts));
+            _powersBtn.onClick.AddListener(() => SwitchState(StoreState.powers));
+            _petsBtn.onClick.AddListener(() => SwitchState(StoreState.pets));
+            _skinsBtn.onClick.AddListener(() => SwitchState(StoreState.skins));
+            _selectBtn.onClick.AddListener(SelectItem);
+            _menu.SetData(_skins);
+            _state= StoreState.skins;
+            _backBtn.onClick.AddListener(OnBackClick);
+            
+
+        }
+
+        private void OnBackClick()
+        {
+            _scenesLoader.LoadSceneAsync(ScenesNames.Menu);
+        }
+
+        public void SwitchState(StoreState storeState)
         {
             if (_state == storeState)
             {
                 return;
             }
-            _state =storeState;
+            _state = storeState;
+            var storeitems = new List<StoreItem>();
+            switch (_state)
+            {
+                case StoreState.skins:
+                    storeitems = _skins;
+                    break;
+
+                case StoreState.powers:
+                    storeitems = _powers;
+                    break;
+
+                case StoreState.pets:
+                    storeitems = _pets;
+                    break;
+
+                case StoreState.hearts:
+                    storeitems = _hearts;
+                    break;
+
+            }
+            _menu.SetData(storeitems);
 
         }
 
-        public void SelectItem(StoreItem storeItem)
+        public void SelectItem()
         {
-            switch(_state)
+            var storeItem = _menu.CurrentItem.MyStoreItem;
+            switch (_state)
             {
                 case StoreState.skins:
                     SelectSkin(storeItem);
@@ -68,12 +138,17 @@ namespace Daxi.VisualLayer.Store
             }
         }
 
-        private void SelectHeart(StoreItem storeItem)
-        {            
-            _playerData.AddHeart(storeItem.Amount);
+        private async void SelectHeart(StoreItem storeItem)
+        {
+            var purchased = await Purchase(storeItem);
+            if (purchased)
+            {
+                _playerData.AddHeart(storeItem.Amount);
+
+            }
         }
 
-        private void SelectPet(StoreItem storeItem)
+        private async void SelectPet(StoreItem storeItem)
         {
             var id=int.Parse(storeItem.Id);
             for (int i = 0; i < _playerData.UnlockedPets.Length; i++)
@@ -84,32 +159,40 @@ namespace Daxi.VisualLayer.Store
                     return;
                 }
             }
-            _playerData.UnlockPet(id);
-            _playerData.SetPet(id);
-        }
-
-        private void SelectPower(StoreItem storeItem)
-        {
-            switch(storeItem.Id)
+            var purchased = await Purchase(storeItem);
+            if (purchased)
             {
-                case "Plank":
-                    _playerData.AddPlank(storeItem.Amount);
-                    break;
-
-                case "Shield":
-                    _playerData.AddShield(storeItem.Amount);
-                    break;
-
-                case "Gum":
-                    _playerData.AddGum(storeItem.Amount);
-
-                    break;
-
-
+                _playerData.UnlockPet(id);
+                _playerData.SetPet(id);
             }
         }
 
-        private void SelectSkin(StoreItem storeItem)
+        private async void SelectPower(StoreItem storeItem)
+        {
+            var purchased = await Purchase(storeItem);
+            if (purchased)
+            {
+                switch (storeItem.Id)
+                {
+                    case "Plank":
+                        _playerData.AddPlank(storeItem.Amount);
+                        break;
+
+                    case "Shield":
+                        _playerData.AddShield(storeItem.Amount);
+                        break;
+
+                    case "Gum":
+                        _playerData.AddGum(storeItem.Amount);
+
+                        break;
+
+
+                }
+            }
+        }
+
+        private async void SelectSkin(StoreItem storeItem)
         {
             var id = int.Parse(storeItem.Id);
             for (int i = 0; i < _playerData.UnlockedCharacters.Length; i++)
@@ -120,20 +203,24 @@ namespace Daxi.VisualLayer.Store
                     return;
                 }
             }
-            _playerData.UnlockCharacter(id);
-            _playerData.SetCharcter(id);
+            var purchased=await Purchase(storeItem);
+            if (purchased)
+            {
+                _playerData.UnlockCharacter(id);
+                _playerData.SetCharcter(id);
+            }
+           
         }
         private async UniTask<bool> Purchase(StoreItem storeItem)
         {
-            var Purchased = false;
+            var Purchased = true;
 
-            while(!Purchased)
-            {
-                await UniTask.Yield();
-            }
+           
            
             return Purchased;
         }
+
+      
         #endregion
     }
 }

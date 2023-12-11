@@ -5914,6 +5914,25 @@ MonoBehaviour:
   _rb: {fileID: 7876267736765075083}
   _playerSettings: {fileID: 11400000, guid: e16996ceb39c81742bef2c34680402d2, type: 2}
   _canvas: {fileID: 7876267736047940682}
+  _playersClipsInfos:
+  - MyType: 0
+    Clip: {fileID: 8300000, guid: 1a30cebe899723741ad3da6417d23134, type: 3}
+  - MyType: 1
+    Clip: {fileID: 8300000, guid: f8977d2fae0602947a440fe5704806e7, type: 3}
+  - MyType: 6
+    Clip: {fileID: 8300000, guid: a485b516122b63d469550709f1845165, type: 3}
+  - MyType: 2
+    Clip: {fileID: 8300000, guid: 1f460d956e07af3448d7bb1b10b94cec, type: 3}
+  - MyType: 3
+    Clip: {fileID: 8300000, guid: db2580aa6da9bfd4b976ad610fd78d11, type: 3}
+  - MyType: 4
+    Clip: {fileID: 8300000, guid: 56ce5b25728421d4a9730244bbff5fb7, type: 3}
+  - MyType: 5
+    Clip: {fileID: 8300000, guid: bdb8e15a919eb4f49ae418791bb86798, type: 3}
+  - MyType: 7
+    Clip: {fileID: 8300000, guid: 585b243e6d5568d43ac96b7d93fc68f9, type: 3}
+  - MyType: 8
+    Clip: {fileID: 8300000, guid: 453d00fa04a954d49baf363b33356543, type: 3}
 --- !u!114 &7876267736765075121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6159,7 +6178,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 802efee73177c174a87248ea4bc7703a, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 6aee0e9b9ddaa5c49a60844a06de19c2, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

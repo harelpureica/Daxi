@@ -769,7 +769,7 @@ MonoBehaviour:
   _levelManager: {fileID: 2479432249167263998}
   _audioSource: {fileID: 880482354577847099}
   _winClip: {fileID: 8300000, guid: f6e65d3f8b4fae944b4c18619d8fab0a, type: 3}
-  _loseClip: {fileID: 8300000, guid: 61883d85fe392724cbe541c0e33f9597, type: 3}
+  _loseClip: {fileID: 8300000, guid: e6aa8174873bd4b49a33100d4ae16414, type: 3}
 --- !u!114 &1742571298872320935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14233,7 +14233,7 @@ Camera:
   far clip plane: 200
   field of view: 65
   orthographic: 1
-  orthographic size: 5.3920703
+  orthographic size: 6.75
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

@@ -173,7 +173,7 @@ namespace Daxi.DataLayer.Player
         {
             for (int i = 0; i < _unlockedCharacters.Length; i++)
             {
-                if(_unlockedCharacters[i] == ((char)index) )
+                if(_unlockedCharacters[i].ToString() == index.ToString())
                 {
                     return;
                 }
@@ -185,7 +185,7 @@ namespace Daxi.DataLayer.Player
         {
             for (int i = 0; i < _unlockedCharacters.Length; i++)
             {
-                if (_unlockedCharacters[i] == ((char)character))
+                if (_unlockedCharacters[i].ToString() == character.ToString())
                 {
                     _character = character;
                     OnDataChenged?.Invoke();
@@ -198,7 +198,7 @@ namespace Daxi.DataLayer.Player
         {
             for (int i = 0; i < _unlockedPets.Length; i++)
             {
-                if (_unlockedPets[i] == ((char)index))
+                if (_unlockedPets[i].ToString() == index.ToString())
                 {
                     return;
                 }
@@ -210,7 +210,7 @@ namespace Daxi.DataLayer.Player
         {
             for (int i = 0; i < _unlockedPets.Length; i++)
             {
-                if (_unlockedPets[i] == ((char)pet))
+                if (_unlockedPets[i].ToString() == (pet.ToString()))
                 {
                     _petIndex = pet;
                     OnDataChenged?.Invoke();

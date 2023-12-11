@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Daxi.VisualLayer.Collectables.Candies;
+using Daxi.VisualLayer.Player;
+using UnityEngine;
 using Zenject;
 
 namespace Daxi.VisualLayer.ReusableComponents.Interactions
@@ -8,6 +10,13 @@ namespace Daxi.VisualLayer.ReusableComponents.Interactions
         #region Fields
         [SerializeField]
         private float _interactionDistance;
+
+
+        #endregion
+
+        #region Injects
+        [Inject]
+        private PlayerManager _playerManager;
         #endregion
 
         #region Methods      
@@ -20,6 +29,10 @@ namespace Daxi.VisualLayer.ReusableComponents.Interactions
             if (collision.gameObject.TryGetComponent<IInteractable>(out var interactable))
             {
                 interactable.Interact();
+            }
+            if (collision.gameObject.TryGetComponent<CollectableCandy>(out var collectable))
+            {
+                _playerManager.PlayClip(PlayersClipInfo.PlayersClipType.collect);
             }
         }
         private void OnCollisionEnter2D(Collision2D collision)

@@ -1,4 +1,5 @@
 ﻿using Daxi.DataLayer.Configuration.Player;
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -18,6 +19,9 @@ namespace Daxi.VisualLayer.Player.Installers
 
         [SerializeField]
         private Canvas _canvas;
+
+        [SerializeField]
+        private List<PlayersClipInfo> _playersClipsInfos;
         #endregion
 
         #region Methods
@@ -34,9 +38,15 @@ namespace Daxi.VisualLayer.Player.Installers
                .AsSingle();
 
             Container
+               .Bind<List<PlayersClipInfo>>()
+               .FromInstance(_playersClipsInfos)
+               .AsSingle();
+
+            Container
                .Bind<Rigidbody2D>()
                .FromInstance(_rb)
                .AsSingle();
+
 
             Container
                 .Bind<PlayerSettings>()

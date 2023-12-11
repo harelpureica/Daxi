@@ -17,6 +17,9 @@ namespace Daxi.VisualLayer.Player.PowerUps
         [Inject]
         private PlayerMovementUi _playerMovementUi;
 
+        [Inject]
+        private PlayerManager _playerManager;
+
         private bool _active;
 
         private bool _movingUp;
@@ -28,7 +31,8 @@ namespace Daxi.VisualLayer.Player.PowerUps
         #region Methods    
         public void SetActive(bool active)
         {            
-           
+           if(_active==active) return;
+
             if(active)
             {
                 _rb.gravityScale = 0.05f;
@@ -36,6 +40,11 @@ namespace Daxi.VisualLayer.Player.PowerUps
                 {
                     _rb.AddForce(Vector2.up *1.8f, ForceMode2D.Impulse);
                 }
+                
+                _playerManager.PlayClip(PlayersClipInfo.PlayersClipType.gum);
+            }else
+            {
+                _playerManager.PlayClip(PlayersClipInfo.PlayersClipType.endgum);
 
             }
             _active = active;
