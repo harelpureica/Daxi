@@ -72,16 +72,14 @@ namespace Daxi.VisualLayer.UI
                 return;
             }          
             _fillImage.fillAmount= fill;
+          
         }
         public void PowerUp()
         {
             if(_levelManager.MyState==LevelManager.LevelState.run)
             {
                 _playerManager.Powerup(_powerUp);
-                if (_powerUp.MyName == "Plank")
-                {
-                    Destroy(gameObject);
-                }
+               
             }
             
         }

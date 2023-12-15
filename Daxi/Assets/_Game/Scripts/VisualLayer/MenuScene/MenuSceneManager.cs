@@ -116,12 +116,12 @@ namespace Daxi.VisualLayer.MenuScene
         public void OpenGmailForContacting()
         {
             string email = "Wildgeex.support@gmail.com";  // Replace with your email address
-            string subject = "WildGeex encourage you to give us feedback from daxi so we can Improve the game ";
-            string body = "Hello, I have some feedback for your app...";
+            string subject = "Feedback for Daxi";
+            string body = "Hello, I have some feedback for Daxi...";
 
             string mailtoLink = "mailto:" + email +
                                 "?subject=" + UnityWebRequest.EscapeURL(subject) +
-                                "&body=" + UnityWebRequest.EscapeURL(body);
+                                "&body=" + Uri.EscapeDataString(body);
 
             Application.OpenURL(mailtoLink);
         }
@@ -150,7 +150,6 @@ namespace Daxi.VisualLayer.MenuScene
                     }
                     verifyAgePopup.Close();
                     _volumeController.SetDof(false);
-                    await UniTask.Delay(500);
                     _service.DestroyObject(verifyAgePopup.gameObject);
                     var termsPopup = _termsPopupFactory.Create();
                     termsPopup.Open();
@@ -167,7 +166,6 @@ namespace Daxi.VisualLayer.MenuScene
                     }
                     termsPopup.Close();
                     _volumeController.SetDof(false);
-                    await UniTask.Delay(500);
                     _service.DestroyObject(termsPopup.gameObject);
                 }
             }

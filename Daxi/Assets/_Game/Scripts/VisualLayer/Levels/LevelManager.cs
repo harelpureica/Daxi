@@ -25,6 +25,7 @@ using Daxi.VisualLayer.UI.Missions;
 using UnityEngine.Rendering.Universal;
 using Daxi.VisualLayer.PostProcessing;
 using Daxi.InfrastructureLayer.Audio;
+using System.Collections.Generic;
 
 namespace Daxi.VisualLayer.Levels
 {
@@ -88,7 +89,12 @@ namespace Daxi.VisualLayer.Levels
         [Inject (Id ="LevelManager")]
         private AudioSource _audioSource;
 
+        [Inject]
+        private List<LevelData> _levels;
+
         private bool adForLifePopupSeen;
+
+        
 
 
         #endregion
@@ -211,7 +217,7 @@ namespace Daxi.VisualLayer.Levels
             Time.timeScale = 0f;
             CachedRenderPipeline.renderScale = 0.3f;
             while (!popup.PlayerClickedClose&&!popup.LevelButtonPressed&&!popup.restartButtonPressed)
-            {
+            {                
                 await UniTask.Yield();
             }
             Time.timeScale = 1f;
@@ -265,9 +271,14 @@ namespace Daxi.VisualLayer.Levels
 
 
         }
+        private void OnApplicationQuit()
+        {
+            CachedRenderPipeline.renderScale = 1f;
+
+        }
         public async UniTask LoadLevelSceneWithLoadingScreenAsync(string levelToLoad, string levelToUnload)
         {
-
+            
             _loadingScreen.Show();
             await _scenesLoader.UnloadSceneAsync(levelToUnload);
             var lerp = 0f;
@@ -279,11 +290,16 @@ namespace Daxi.VisualLayer.Levels
             }
             await _scenesLoader.LoadSceneAsync(levelToLoad, LoadSceneMode.Additive);
             _loadingScreen.UpdateProgress(0.95f);
-            var levelManager = Object.FindObjectOfType<LevelManager>();
-            await levelManager.InitializePlayer();
             _loadingScreen.UpdateProgress(1);
-            levelManager.StartLevel();
             _loadingScreen.Hide();
+            var levelManager = Object.FindObjectOfType<LevelManager>();
+            if(levelManager != null)
+            {
+                await levelManager.InitializePlayer();
+                levelManager.StartLevel();
+
+            }
+          
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(levelToLoad));
 
 
@@ -308,9 +324,10 @@ namespace Daxi.VisualLayer.Levels
                 await OutOfHeartsPopupRoutine();                
                 return;
             }
-            
+           
             adForLifePopupSeen = true;
             _playerManager.Active = false;
+            await _playerManager.AnimateSad();
             var popup = adForLifePopupFactory.Create();
             popup.Open();
             _volumeController.SetDof(true);
@@ -403,6 +420,16 @@ namespace Daxi.VisualLayer.Levels
             if(completedTrack && _missionsTracker.Completed)
             {
                 levelPassed = true;
+                _playerData.UnlockLevel();                
+                for (int i = 0; i < _levels.Count; i++)
+                {
+                    if (_levelData.NextlevelSceneName == _levels[i].SceneName)
+                    {
+                        _levels[i].Locked = false; 
+                        break;
+
+                    }
+                }
             }
             await PlayerStopRoutine(levelPassed);
             EndLevelPopupRoutine(levelPassed);

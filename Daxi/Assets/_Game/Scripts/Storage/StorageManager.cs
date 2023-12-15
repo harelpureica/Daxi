@@ -1,10 +1,12 @@
 ﻿using Cysharp.Threading.Tasks;
+using Daxi.DataLayer.LevelsData;
 using Daxi.DataLayer.Player;
 using Daxi.VisualLayer.Player.PowerUps;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using GooglePlayGames.BasicApi.SavedGame;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -15,6 +17,9 @@ namespace Daxi.Storage
         #region Injects
         [Inject]
         private PlayerData _data;
+
+        [Inject]
+        private List<LevelData> _levels;
         #endregion
 
         #region Fields
@@ -137,7 +142,17 @@ namespace Daxi.Storage
             {
                 var data = System.Text.ASCIIEncoding.ASCII.GetString(arg2);
                 _data.SetStringData(data);
-               
+                for (int i = 0; i < _levels.Count; i++)
+                {
+                    if(i<_data.UnlockedLevels)
+                    {
+                        _levels[i].Locked = false;
+                    }
+                    else
+                    {
+                        _levels[i].Locked = true;
+                    }
+                }
                 Debug.Log("gameLoded");
                 
 

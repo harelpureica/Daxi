@@ -1,5 +1,6 @@
 ﻿using Daxi.DataLayer.StoreData;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -47,11 +48,60 @@ namespace Daxi.VisualLayer.Store.Installers
 
         [SerializeField]
         private Button _backBtn;
+
+        [SerializeField]
+        private GameObject _heartOutline;
+
+        [SerializeField]
+        private GameObject _powersOutline;
+
+        [SerializeField]
+        private GameObject _petsOutline;
+
+        [SerializeField]
+        private GameObject _skinsOutline;
+
+        [SerializeField]
+        private Button _mainBtn;
+
+        [SerializeField]
+        private Sprite _yellowBtnImage;
+
+        [SerializeField]
+        private Sprite _pinkBtnImage;
+
+        [SerializeField]
+        private TextMeshProUGUI _mainBtnText;
+
         #endregion
 
         #region Methods
         public override void InstallBindings()
         {
+            Container
+              .Bind<Sprite>()
+              .WithId("YellowBtn")
+              .FromInstance(_yellowBtnImage)
+              .AsTransient();
+
+            Container
+              .Bind<Sprite>()
+              .WithId("PinkBtn")
+              .FromInstance(_pinkBtnImage)
+              .AsTransient();
+
+            Container
+               .Bind<Button>()
+               .WithId("MainBtn")
+               .FromInstance(_mainBtn)
+               .AsTransient();
+
+            Container
+              .Bind<TextMeshProUGUI>()
+              .WithId("MainBtnText")
+              .FromInstance(_mainBtnText)
+              .AsTransient();
+
             Container
                 .Bind<Button>()
                 .WithId("Select")
@@ -126,6 +176,30 @@ namespace Daxi.VisualLayer.Store.Installers
                .FromComponentInNewPrefab(_storeItemUiPrefab)
                .UnderTransform(_parent)
                .AsSingle();
+
+            Container
+              .Bind<GameObject>()
+              .WithId("Hearts")
+              .FromInstance(_heartOutline)
+              .AsTransient();
+
+            Container
+              .Bind<GameObject>()
+              .WithId("Powers")
+              .FromInstance(_powersOutline)
+              .AsTransient();
+
+            Container
+              .Bind<GameObject>()
+              .WithId("Pets")
+              .FromInstance(_petsOutline)
+              .AsTransient();
+
+            Container
+              .Bind<GameObject>()
+              .WithId("Skins")
+              .FromInstance(_skinsOutline)
+              .AsTransient();
         }
         #endregion
     }

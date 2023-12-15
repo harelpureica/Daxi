@@ -148,6 +148,10 @@ namespace Daxi.VisualLayer.Player
             var startColor = _spriteRenderer.material.color;
             while (lerp < 1)
             {
+                if(_spriteRenderer==null)
+                {
+                    return;
+                }
                 _spriteRenderer.material.color = new Color(startColor.r, startColor.g, startColor.b, Mathf.Lerp(startColor.a, alpha, lerp));
                 lerp += Time.deltaTime / timeToAnimate;               
                 await UniTask.Yield();

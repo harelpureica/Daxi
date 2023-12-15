@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_Game/Scenes/Harels/Splash.unity
+    guid: 7c6d1e362fd046c438bfbb93578f4461
+  - enabled: 1
     path: Assets/_Game/Scenes/Harels/Start.unity
     guid: 0153a1171dcaa3b47afd0895e6a45c54
   - enabled: 1

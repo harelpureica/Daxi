@@ -27,7 +27,7 @@ namespace Daxi.DataLayer.StoreData
         #endregion
 
         #region Propeties
-        public string Id  => _id; 
+        public string MyId  => _id; 
         public float Cost=> _cost; 
         public Sprite DescriptionSprite => _descriptionSprite;
         public Sprite Sprite  => _sprite;

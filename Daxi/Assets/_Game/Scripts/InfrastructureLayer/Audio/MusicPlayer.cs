@@ -87,7 +87,7 @@ namespace Daxi.InfrastructureLayer.Audio
 
             _audioSource.clip = clip;
             _audioSource.Play();
-            await TransitionVolume(0.35f, 0.5F);
+            await TransitionVolume(1f, 0.5F);
            
         }
         public  void PlayWorlds()

@@ -102,6 +102,8 @@ namespace Daxi.VisualLayer.Player
         private bool _finished;
 
         private bool _inFallZone;
+
+        private bool _animatingSad;
       
         #endregion
 
@@ -212,13 +214,19 @@ namespace Daxi.VisualLayer.Player
 
         private void Update()
         {
-            if(_finished)
+            if (_animatingSad)
+            {
+                return;
+            }
+            if (_finished)
             {
                 _rb.velocity = Vector2.Lerp(_rb.velocity,Vector2.zero,Time.deltaTime*2);
                 return;
             }
+            
             if (!Active)
             {
+               
                 _finished = false;
                 _playerAnimation.AnimateIdle();
                 _rb.gravityScale = 0f;
@@ -400,11 +408,23 @@ namespace Daxi.VisualLayer.Player
             await UniTask.Delay(6000);
 
         }
+        public async UniTask AnimateSad()
+        {
+            var startGravity = _rb.gravityScale;
+            _rb.gravityScale = 0f;
+            _rb.velocity = Vector2.zero;
+            _animatingSad = true;
+            _playerAnimation.AnimateLose();
+            await UniTask.Delay(2000);
+            _rb.gravityScale = startGravity;
+            _animatingSad = false;
+
+        }
 
         public void OnReachedFinishLine()
         {
             _playersCameraController.StopFollow();
-        }
+        }       
 
 
         #endregion
@@ -412,7 +432,9 @@ namespace Daxi.VisualLayer.Player
     [Serializable]
     public struct PlayersClipInfo
     {
-        public enum PlayersClipType { slide, power, gum,endgum,shield,endShield,spring,jump,collect};
+        public enum PlayersClipType { slide, power, gum,endgum,shield,endShield,spring,jump,collect,
+            plank
+        }
         public PlayersClipType MyType;
         public AudioClip Clip;
     }

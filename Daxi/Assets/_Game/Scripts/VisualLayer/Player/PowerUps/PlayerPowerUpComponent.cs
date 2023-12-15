@@ -136,6 +136,7 @@ namespace Daxi.VisualLayer.Player.PowerUps
                 lerp += Time.deltaTime/time;
                 await UniTask.Yield();
             }
+
         }
         public  async void PowerUp(GameItemData powerup)
         {
@@ -151,7 +152,7 @@ namespace Daxi.VisualLayer.Player.PowerUps
                         OnExtraPlankUsed?.Invoke();
 
                     }
-                   
+                    _playerManager.PlayClip(PlayersClipInfo.PlayersClipType.plank);
                     _planksAmount--;
 
                     break;
@@ -162,15 +163,17 @@ namespace Daxi.VisualLayer.Player.PowerUps
                         return;
                     }
                     _gumAvailable = false;
+
                     Gum();
+                   
                     await UpdateButtonsFillAmount(powerup, _settings.GumChargingTime);
-                    if(_gumAmount<=_extraGumAmount)
+                    if (_gumAmount <= _extraGumAmount)
                     {
                         _extraGumAmount--;
                         OnExtraGumUsed?.Invoke();
                     }
                     _gumAmount--;
-                    
+
                     await _playerAnimationComponent.AnimateEndGum();
                     _gumAvailable = true;
                     break;
@@ -182,8 +185,9 @@ namespace Daxi.VisualLayer.Player.PowerUps
                     }
                     _shieldAvailable = false;
                     Shield();
+                   
                     await UpdateButtonsFillAmount(powerup, _settings.ShieldChargingTime);
-                    if (_shieldAmount <=_extraShieldAmount)
+                    if (_shieldAmount <= _extraShieldAmount)
                     {
                         _extraShieldAmount--;
                         OnExtraShieldUsed?.Invoke();
@@ -196,11 +200,12 @@ namespace Daxi.VisualLayer.Player.PowerUps
 
                     break;
             }
-          
+
+            _playerPowerUpUi.SetData(_gumAmount, _shieldAmount, _planksAmount);
 
         }
-      
-     
+
+
         private async void Gum()
         {
             _playerManager.HaveGum = true;

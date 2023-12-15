@@ -4,6 +4,8 @@ namespace Daxi.InfrastructureLayer.ScenesManagment
 {
     public class ScenesNames
     {
+        public const string Start = "Start";
+
         public const string Menu = "Menu";
 
         public const string WorldSelection = "WorldSelection";

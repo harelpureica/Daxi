@@ -7,11 +7,6 @@ using Daxi.InfrastructureLayer.ScenesManagment;
 using Daxi.InfrastructureLayer.Audio;
 using GooglePlayGames.BasicApi;
 using GooglePlayGames;
-using Unity.Services.Authentication;
-using Unity.Services.Core;
-using System;
-using Unity.VisualScripting.Antlr3.Runtime;
-using UnityEngine.SocialPlatforms;
 using Daxi.Storage;
 
 public class StartScreenManager : IInitializable
@@ -34,7 +29,6 @@ public class StartScreenManager : IInitializable
         
         if (SystemInfo.deviceType==DeviceType.Handheld)
         {
-            await UniTask.Delay(2500);
             Authenticate();
 
         }
@@ -66,6 +60,7 @@ public class StartScreenManager : IInitializable
    
     public   void Authenticate()
     {
+               
         PlayGamesPlatform.DebugLogEnabled = true;
         PlayGamesPlatform.Activate();
         PlayGamesPlatform.Instance.Authenticate(OnSignInResult);
@@ -80,8 +75,11 @@ public class StartScreenManager : IInitializable
             StartGame();
         }
         else
-        {
-            Debug.Log("login failed");
+        { 
+            
+            
+             _text.text=$"failed :{obj}";
+            await UniTask.Delay(3000);
             Application.Quit();
             
         }

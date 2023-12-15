@@ -95,6 +95,7 @@ namespace Daxi.DataLayer.Player
             _petIndex = int.Parse(parts[6]);
             _unlockedCharacters = parts[7];
             _unlockedPets = parts[8];
+
         }
         #endregion
 
@@ -218,6 +219,12 @@ namespace Daxi.DataLayer.Player
                 }
             }
 
+        }
+
+        public void UnlockLevel()
+        {
+            _unlockedLevels=Mathf.Clamp(_unlockedLevels + 1,1, 18);
+            OnDataChenged?.Invoke();
         }
 
         #endregion

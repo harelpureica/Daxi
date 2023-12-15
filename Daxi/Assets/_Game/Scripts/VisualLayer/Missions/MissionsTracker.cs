@@ -84,6 +84,7 @@ namespace Daxi.VisualLayer.Missions
             if(_itemsRequirmentPassed>=_missionData.ItemsCount||_missionData.Mode==MissionData.MissionMode.dammaging)
             {
                 _completed = true;
+
             }
             OnMissionTracking?.Invoke(_completed, _itemsRequirmentPassed,_missionData.ItemsCount,_lettersRequirments);
 

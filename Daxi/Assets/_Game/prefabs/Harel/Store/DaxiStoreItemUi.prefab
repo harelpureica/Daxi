@@ -198,6 +198,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _button: {fileID: 5188984070092593508}
   _transformToSize: {fileID: 3044946585085279019}
+  _nametext: {fileID: 1244967335453284854}
+  _pricetext: {fileID: 7861151842126547955}
 --- !u!1 &5254662075597861948
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,7 +227,7 @@ RectTransform:
   m_GameObject: {fileID: 5254662075597861948}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.800642, y: 1.800642, z: 1.800642}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4031549417741212266}
@@ -233,8 +235,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 40, y: -296}
-  m_SizeDelta: {x: -304, y: -402}
+  m_AnchoredPosition: {x: 40, y: -286}
+  m_SizeDelta: {x: -88.564, y: -361.7016}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1211284407540221570
 CanvasRenderer:
@@ -291,12 +293,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33
+  m_fontSize: 55.1
   m_fontSizeBase: 33
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 55.1
+  m_fontSizeMax: 105.6
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512

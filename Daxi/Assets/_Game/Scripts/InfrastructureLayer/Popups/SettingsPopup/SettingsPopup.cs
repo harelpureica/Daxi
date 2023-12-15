@@ -61,6 +61,8 @@ namespace Daxi.InfrastructureLayer.Popups.SettingsPopup
         private bool _termsButtonClicked;
 
         private bool _confirmedCheat;
+
+        private float timeWithFiveFingers;
          
 
         #endregion
@@ -71,12 +73,16 @@ namespace Daxi.InfrastructureLayer.Popups.SettingsPopup
         public bool TermsButtonClicked => _termsButtonClicked;
 
         public bool ConfirmedCheat  => _confirmedCheat; 
+
+
         #endregion
 
         #region Methods
         protected override void Start()
         {
+            timeWithFiveFingers = 0f;
             base.Start();
+            _cheatButton.gameObject.SetActive(false);
             _confirmedCheat = false;
             _cheatInputConfirmBtn.gameObject.SetActive(false);
             _cheatInput.gameObject.SetActive(false);
@@ -111,7 +117,31 @@ namespace Daxi.InfrastructureLayer.Popups.SettingsPopup
                 _musicOffButton.gameObject.SetActive(false);
             }
         }
+        private void Update()
+        {
+            if(SystemInfo.deviceType==DeviceType.Handheld)
+            {
+                if(Input.touchCount==5)
+                {
+                    timeWithFiveFingers += Time.deltaTime;
+                    if(timeWithFiveFingers >4)
+                    {
+                        _cheatButton.gameObject.SetActive(true);
+                    }
+                }
+               
 
+            }
+            else
+            {
+                if (!_cheatButton.gameObject.activeInHierarchy)
+                {
+                    _cheatButton.gameObject.SetActive(true);
+
+                }
+
+            }
+        }
         public void OnCheatConfirmedClick()
         {
             if (_cheatInput.text == CheatCode)
@@ -127,7 +157,7 @@ namespace Daxi.InfrastructureLayer.Popups.SettingsPopup
         }
         private void SfxOn()
         {
-            _audioSettings.SetMixerVolume(AudioSettingsController.MixerType.Sfx, 0.8f);
+            _audioSettings.SetMixerVolume(AudioSettingsController.MixerType.Sfx, 0.71f);
             _sfxOffButton.gameObject.SetActive(true);
             _sfxOnButton.gameObject.SetActive(false);
         }
@@ -148,7 +178,7 @@ namespace Daxi.InfrastructureLayer.Popups.SettingsPopup
 
         private void MusicOn()
         {
-            _audioSettings.SetMixerVolume(AudioSettingsController.MixerType.Music, 0.8f);
+            _audioSettings.SetMixerVolume(AudioSettingsController.MixerType.Music, 0.7f);
             _musicOffButton.gameObject.SetActive(true);
             _musicOnButton.gameObject.SetActive(false);
         }

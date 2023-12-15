@@ -5916,11 +5916,11 @@ MonoBehaviour:
   _canvas: {fileID: 7876267736047940682}
   _playersClipsInfos:
   - MyType: 0
-    Clip: {fileID: 8300000, guid: 1a30cebe899723741ad3da6417d23134, type: 3}
+    Clip: {fileID: 8300000, guid: 2151a4a8eba2fe246ba69572081efdde, type: 3}
   - MyType: 1
     Clip: {fileID: 8300000, guid: f8977d2fae0602947a440fe5704806e7, type: 3}
   - MyType: 6
-    Clip: {fileID: 8300000, guid: a485b516122b63d469550709f1845165, type: 3}
+    Clip: {fileID: 8300000, guid: d48101ff1a7bf124a8144a584328a446, type: 3}
   - MyType: 2
     Clip: {fileID: 8300000, guid: 1f460d956e07af3448d7bb1b10b94cec, type: 3}
   - MyType: 3
@@ -5933,6 +5933,8 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: 585b243e6d5568d43ac96b7d93fc68f9, type: 3}
   - MyType: 8
     Clip: {fileID: 8300000, guid: 453d00fa04a954d49baf363b33356543, type: 3}
+  - MyType: 9
+    Clip: {fileID: 8300000, guid: be1bf3e152dd2434d80b023716566385, type: 3}
 --- !u!114 &7876267736765075121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6180,7 +6182,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 802efee73177c174a87248ea4bc7703a, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 0
   Mute: 0

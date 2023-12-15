@@ -1,6 +1,10 @@
-﻿using Daxi.DataLayer.StoreData;
+﻿using Daxi.DataLayer.Player;
+using Daxi.DataLayer.StoreData;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Device;
 using UnityEngine.UI;
@@ -33,6 +37,24 @@ namespace Daxi.VisualLayer.Store
         private float _itemSize;
 
         private StoreItemUi currentItem;
+
+        [Inject(Id = "MainBtn")]
+        private Button _mainBtn;
+
+        [Inject(Id = "YellowBtn")]
+        private Sprite _mainBtnYellow;
+
+        [Inject(Id = "PinkBtn")]
+        private Sprite _mainBtnPink;
+
+        [Inject(Id = "MainBtnText")]
+        private TextMeshProUGUI _mainBtnText;
+
+        [Inject]
+        private PlayerData _playerData;
+
+        [Inject]
+        private StoreController _controller;
 
 
         private bool _initializing;
@@ -73,7 +95,6 @@ namespace Daxi.VisualLayer.Store
         }
         private void LateUpdate()
         {
-            Debug.Log("YesUpdate");
             ScrollItems();
         }
 
@@ -93,6 +114,24 @@ namespace Daxi.VisualLayer.Store
                 if (i == currentIndex)
                 {
                     itemsUis[i].Grow();
+                    if(_controller.State == StoreController.StoreState.pets)
+                    {
+                        char[] chars = _playerData.UnlockedPets.ToCharArray();
+                        ChangeBtnBasedOnUnlockedItem(itemsUis[i].MyStoreItem, chars);
+                    }
+                    else if (_controller.State == StoreController.StoreState.skins)
+                    {
+                        char[] chars = _playerData.UnlockedCharacters.ToCharArray();
+                        ChangeBtnBasedOnUnlockedItem(itemsUis[i].MyStoreItem, chars);
+
+                    }
+                    else
+                    {
+
+                        _mainBtn.image.sprite = _mainBtnYellow;
+                        _mainBtnText.text = itemsUis[i].MyStoreItem.Cost.ToString("0.00") + "$";
+
+                    }
 
                 }
                 else
@@ -127,7 +166,31 @@ namespace Daxi.VisualLayer.Store
            
 
         }
+        private void ChangeBtnBasedOnUnlockedItem(StoreItem storeItem, char[]unlockedItems)
+        {
+            var unlocked = false;
+            for (int i = 0; i < unlockedItems.Length; i++)
+            {
+                if (unlockedItems[i] == storeItem.MyId[0])
+                {
+                    unlocked = true;
+                    break;
+                }
+            }
+            if (unlocked)
+            {
+                _mainBtn.image.sprite = _mainBtnPink;
+                _mainBtnText.text = "";
 
+            }
+            else
+            {
+                _mainBtn.image.sprite = _mainBtnYellow;
+                _mainBtnText.text =storeItem.Cost.ToString("0.00") + "$";
+
+
+            }
+        }
       
         #endregion
     }

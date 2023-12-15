@@ -16,4 +16,4 @@ MonoBehaviour:
   _levelbuttonSprite: {fileID: 21300000, guid: e68151437184d1d4da0dfee10cbd4a1e, type: 3}
   _locked: 1
   _levelSelctionSceneName: WorldThreeLevelSelection
-  _nextlevelSceneName: 
+  _nextlevelSceneName: WorldThreeLevelSelection

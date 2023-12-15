@@ -100,13 +100,21 @@ namespace Daxi.InfrastructureLayer.Popups.Pause
 
             if(_controller.GetVolume(mixer) >0)
             {
-                _controller.SetMixerVolume(mixer, 0);
+               
+                _controller.SetMixerVolume(mixer, 0f);               
                 UpdateButton(mixer, false);
 
             }
             else
             {
-                _controller.SetMixerVolume(mixer, 0.8f);
+                if (mixer == AudioSettingsController.MixerType.Sfx)
+                {
+                    _controller.SetMixerVolume(mixer, 0.71f);
+                }
+                else
+                {
+                    _controller.SetMixerVolume(mixer, 0.7f);
+                }
                 UpdateButton(mixer, true);
 
             }

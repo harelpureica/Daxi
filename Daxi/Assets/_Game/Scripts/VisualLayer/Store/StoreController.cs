@@ -44,8 +44,23 @@ namespace Daxi.VisualLayer.Store
         [Inject(Id = "Skins")]
         private Button _skinsBtn;
 
+
+        [Inject(Id = "Hearts")]
+        private GameObject _heartOutline;
+
+        [Inject(Id = "Powers")]
+        private GameObject _powersOutline;
+
+        [Inject(Id = "Pets")]
+        private GameObject _petsOutline;
+
+        [Inject(Id = "Skins")]
+        private GameObject _skinsOutline;
+
+
         [Inject(Id = "Select")]
         private Button _selectBtn;
+
 
         [Inject]
         private StoreMenu _menu;
@@ -56,9 +71,13 @@ namespace Daxi.VisualLayer.Store
         [Inject]
         private IScenesLoader _scenesLoader;
 
+
+
         public enum StoreState { skins,powers,pets,hearts}
 
         private StoreState _state;
+
+        public StoreState State  => _state;
         #endregion
 
         #region Methods
@@ -94,6 +113,7 @@ namespace Daxi.VisualLayer.Store
             {
                 case StoreState.skins:
                     storeitems = _skins;
+
                     break;
 
                 case StoreState.powers:
@@ -110,7 +130,43 @@ namespace Daxi.VisualLayer.Store
 
             }
             _menu.SetData(storeitems);
+            SetButtonsOutline(storeState);
 
+        }
+        private void SetButtonsOutline(StoreState storeState)
+        {
+            switch (storeState)
+            {
+                case StoreState.skins:
+                    _skinsOutline.gameObject.SetActive(true);
+                    _powersOutline.gameObject.SetActive(false);
+                    _petsOutline.gameObject.SetActive(false);
+                    _heartOutline.gameObject.SetActive(false);
+
+                    break;
+
+                case StoreState.powers:
+                    _skinsOutline.gameObject.SetActive(false);
+                    _powersOutline.gameObject.SetActive(true);
+                    _petsOutline.gameObject.SetActive(false);
+                    _heartOutline.gameObject.SetActive(false);
+                    break;
+
+                case StoreState.pets:
+                    _skinsOutline.gameObject.SetActive(false);
+                    _powersOutline.gameObject.SetActive(false);
+                    _petsOutline.gameObject.SetActive(true);
+                    _heartOutline.gameObject.SetActive(false);
+                    break;
+
+                case StoreState.hearts:
+                    _skinsOutline.gameObject.SetActive(false);
+                    _powersOutline.gameObject.SetActive(false);
+                    _petsOutline.gameObject.SetActive(false);
+                    _heartOutline.gameObject.SetActive(true); 
+                    break;
+
+            }
         }
 
         public void SelectItem()
@@ -150,7 +206,7 @@ namespace Daxi.VisualLayer.Store
 
         private async void SelectPet(StoreItem storeItem)
         {
-            var id=int.Parse(storeItem.Id);
+            var id=int.Parse(storeItem.MyId);
             for (int i = 0; i < _playerData.UnlockedPets.Length; i++)
             {
                 if (_playerData.UnlockedPets[i]== id)
@@ -172,7 +228,7 @@ namespace Daxi.VisualLayer.Store
             var purchased = await Purchase(storeItem);
             if (purchased)
             {
-                switch (storeItem.Id)
+                switch (storeItem.MyId)
                 {
                     case "Plank":
                         _playerData.AddPlank(storeItem.Amount);
@@ -194,7 +250,7 @@ namespace Daxi.VisualLayer.Store
 
         private async void SelectSkin(StoreItem storeItem)
         {
-            var id = int.Parse(storeItem.Id);
+            var id = int.Parse(storeItem.MyId);
             for (int i = 0; i < _playerData.UnlockedCharacters.Length; i++)
             {
                 if (_playerData.UnlockedCharacters[i] == id)

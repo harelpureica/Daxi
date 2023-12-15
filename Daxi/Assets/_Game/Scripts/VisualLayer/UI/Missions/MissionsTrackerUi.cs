@@ -33,6 +33,12 @@ namespace Daxi.VisualLayer.UI.Missions
         private Canvas _canvas;
 
         [SerializeField]
+        private AudioClip _clip;
+
+        [SerializeField]
+        private AudioSource _audioSource;
+
+        [SerializeField]
         private TextMeshProUGUI _text;
 
         [SerializeField]
@@ -49,6 +55,8 @@ namespace Daxi.VisualLayer.UI.Missions
         private float _lettersInActiveAlpha; 
 
         private Dictionary<string,ImageIndicator>_lettersIndicators= new();
+
+        private bool playedAudio;
 
 
         #endregion
@@ -88,6 +96,11 @@ namespace Daxi.VisualLayer.UI.Missions
         }
         public void OnMissionTrackingHandler(bool completed, int requirmentsPassed, int requirments,Dictionary<string,bool>lettersRequierments)
         {
+            if(completed&&!playedAudio)
+            {
+                playedAudio = true;
+                _audioSource.PlayOneShot(_clip);
+            }
             if (_missionData.Mode == MissionMode.letters)
             {
                 if (lettersRequierments == null )
