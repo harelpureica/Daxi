@@ -33,9 +33,6 @@ namespace Daxi.VisualLayer.Store
         [SerializeField]
         private TextMeshProUGUI _nametext;
 
-        [SerializeField]
-        private TextMeshProUGUI _pricetext;
-
 
 
         private StoreItem _storeItem;
@@ -66,7 +63,6 @@ namespace Daxi.VisualLayer.Store
             
             big = true;
             _nametext.gameObject.SetActive(true);
-            _pricetext.gameObject.SetActive(true);
             var wantedSize = Vector3.one;
             var lerp = 0f;
             while(lerp < 1f)
@@ -97,7 +93,6 @@ namespace Daxi.VisualLayer.Store
                 big = false;
             }
             _nametext.gameObject.SetActive(false);
-            _pricetext.gameObject.SetActive(false);
 
             var wantedSize =new Vector3(0.65f, 0.65f, 0.65f);
             var lerp = 0f;
@@ -119,17 +114,8 @@ namespace Daxi.VisualLayer.Store
             _button.image.sprite = _storeItem.Sprite;
             _button.image.preserveAspect = true;
             _nametext.text = _storeItem.name;
-            if(_storeItem.Cost>0)
-            {
-                _pricetext.text = _storeItem.Cost.ToString("0.00") + "$";
-
-            }else
-            {
-                _pricetext.text ="free";
-            }
 
             _nametext.gameObject.SetActive(false);
-            _pricetext.gameObject.SetActive(false);
         }
         #endregion
     }

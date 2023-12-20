@@ -313,6 +313,21 @@ MonoBehaviour:
     m_Scale: 1
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
+  - m_Index: 36
+    m_Metrics:
+      m_Width: 50.484375
+      m_Height: 56.25
+      m_HorizontalBearingX: 2.34375
+      m_HorizontalBearingY: 55.34375
+      m_HorizontalAdvance: 54.90625
+    m_GlyphRect:
+      m_X: 861
+      m_Y: 290
+      m_Width: 51
+      m_Height: 57
+    m_Scale: 1
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
   - m_Index: 37
     m_Metrics:
       m_Width: 43.734375
@@ -958,21 +973,6 @@ MonoBehaviour:
     m_Scale: 1
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
-  - m_Index: 36
-    m_Metrics:
-      m_Width: 50.484375
-      m_Height: 56.25
-      m_HorizontalBearingX: 2.34375
-      m_HorizontalBearingY: 55.34375
-      m_HorizontalAdvance: 54.90625
-    m_GlyphRect:
-      m_X: 861
-      m_Y: 290
-      m_Width: 51
-      m_Height: 57
-    m_Scale: 1
-    m_AtlasIndex: 0
-    m_ClassDefinitionType: 0
   m_CharacterTable:
   - m_ElementType: 1
     m_Unicode: 32
@@ -1045,6 +1045,10 @@ MonoBehaviour:
   - m_ElementType: 1
     m_Unicode: 63
     m_GlyphIndex: 34
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 65
+    m_GlyphIndex: 36
     m_Scale: 1
   - m_ElementType: 1
     m_Unicode: 66
@@ -1217,10 +1221,6 @@ MonoBehaviour:
   - m_ElementType: 1
     m_Unicode: 8230
     m_GlyphIndex: 656
-    m_Scale: 1
-  - m_ElementType: 1
-    m_Unicode: 65
-    m_GlyphIndex: 36
     m_Scale: 1
   m_AtlasTextures:
   - {fileID: 6869240830743381921}
@@ -1789,7 +1789,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: BalooTamma2-SemiBold Atlas Material
   m_Shader: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - UNDERLAY_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -1868,7 +1869,7 @@ Material:
     - _UnderlayDilate: 0
     - _UnderlayOffsetX: 0
     - _UnderlayOffsetY: 0
-    - _UnderlaySoftness: 0
+    - _UnderlaySoftness: 1
     - _VertexOffsetX: 0
     - _VertexOffsetY: 0
     - _WeightBold: 0.75

@@ -19,6 +19,10 @@ namespace Daxi.VisualLayer.UI
         }
         public void PauseLevel()
         {
+            if(_levelManager.PlayerDead)
+            {
+                return;
+            }
             _levelManager.PauseLevel();
         }
     }

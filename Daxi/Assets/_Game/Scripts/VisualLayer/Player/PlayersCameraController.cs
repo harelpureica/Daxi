@@ -58,12 +58,8 @@ namespace Daxi.VisualLayer.Player
             var vel = Vector3.zero;
 
             if(slowYAxis&&_target.position.y>_camTransfrom.position.y-_settings.CameraOffset.y)
-            {
-                if((_target.position.y -( _camTransfrom.position.y - _settings.CameraOffset.y))<_camera.orthographicSize*1.5f)
-                {
-                    wantedPosition = new Vector3(wantedPosition.x, Mathf.MoveTowards(_camTransfrom.position.y, wantedPosition.y, _settings.SlowedYAxisSpeed * Time.fixedDeltaTime), wantedPosition.z);
-
-                }
+            {                
+                wantedPosition = new Vector3(wantedPosition.x, Mathf.MoveTowards(_camTransfrom.position.y, wantedPosition.y, _settings.SlowedYAxisSpeed * Time.fixedDeltaTime), wantedPosition.z);                
             }
             switch (_settings.Mode)
             {

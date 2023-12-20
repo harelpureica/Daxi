@@ -82,7 +82,8 @@ namespace Daxi.InfrastructureLayer.Audio
             if (_audioSource.isPlaying)
             {
                 await TransitionVolume(0f, 0.5F);
-                _audioSource.Stop();               
+                _audioSource.Stop();
+                _audioSource.time = 0f;
             }
 
             _audioSource.clip = clip;
@@ -125,6 +126,7 @@ namespace Daxi.InfrastructureLayer.Audio
             {
                 await TransitionVolume(0f, 0.5F);
                 _audioSource.Stop();
+                _audioSource.time = 0f;
                 _isPlaying = false;
             }
         }
@@ -137,7 +139,7 @@ namespace Daxi.InfrastructureLayer.Audio
         public async void Resume()
         {
             _isPlaying = true;
-            _audioSource.Play();
+            _audioSource.UnPause();
 
         }
         private async UniTask TransitionVolume(float wantedVolume, float time)

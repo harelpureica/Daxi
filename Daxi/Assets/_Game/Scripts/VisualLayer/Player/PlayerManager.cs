@@ -104,7 +104,9 @@ namespace Daxi.VisualLayer.Player
         private bool _inFallZone;
 
         private bool _animatingSad;
-      
+
+        private bool recentlySpring;
+
         #endregion
 
         #region Properties
@@ -270,7 +272,7 @@ namespace Daxi.VisualLayer.Player
             }
 
            
-            if (_jumpingComponent.LastJump)
+            if (_jumpingComponent.LastJump&&!recentlySpring)
             {
                 _playersCameraController.SlowYAxis = true;
             }else
@@ -339,15 +341,21 @@ namespace Daxi.VisualLayer.Player
                 _playerAnimation.AnimateJump();
             }
         }
-        private void Spring(OnSpring args)
+        private async void Spring(OnSpring args)
         {
             if (!_active||_grounded)
             {
                 return;
-            }           
+            }
+            recentlySpring = true;
             _rb.velocity = Vector2.zero;
             _rb.AddForce(((Vector2.up )+(Vector2.right*0.2f))*args.SpringForce, ForceMode2D.Impulse);
             PlayClip(PlayersClipInfo.PlayersClipType.spring);
+            while(!_grounded)
+            {
+                await UniTask.Yield();
+            }
+            recentlySpring = false;
         }
         public void Slide()
         {
