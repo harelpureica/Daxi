@@ -318,7 +318,7 @@ namespace Daxi.VisualLayer.Levels
         {
             if (MusicPlayer.Instance != null)
             {
-                await MusicPlayer.Instance.Stop();
+                 MusicPlayer.Instance.Pause();
             }
             _playerDead = true;
             if (immediet)
@@ -329,7 +329,8 @@ namespace Daxi.VisualLayer.Levels
             }
             if (adForLifePopupSeen)
             {
-                await PlayerStopRoutine(false);               
+                _playerManager.Active = false;
+                await _playerManager.AnimateSad();
                 await OutOfHeartsPopupRoutine();                
                 return;
             }
@@ -349,7 +350,7 @@ namespace Daxi.VisualLayer.Levels
             if (popup.PlayerClickedClose)
             {
 
-                await PlayerStopRoutine(false);
+                
                 if (immediet)
                 {
                     EndLevelPopupRoutine(false);
@@ -361,7 +362,10 @@ namespace Daxi.VisualLayer.Levels
             }
             else
             {
-
+                if (MusicPlayer.Instance != null)
+                {
+                    MusicPlayer.Instance.Resume();
+                }
                 Debug.Log("watchingAdreworded");
                 _playerManager.AddLife();
                 await _countdownComponent.NumbersCountDown();
@@ -435,6 +439,10 @@ namespace Daxi.VisualLayer.Levels
 
                     }
                 }
+            }
+            if (!MusicPlayer.IsPlaying && MusicPlayer.Instance != null)
+            {
+                MusicPlayer.Instance.Stop();
             }
             await PlayerStopRoutine(levelPassed);
             EndLevelPopupRoutine(levelPassed);

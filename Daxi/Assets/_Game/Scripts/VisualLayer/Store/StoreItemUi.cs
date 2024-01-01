@@ -31,10 +31,12 @@ namespace Daxi.VisualLayer.Store
         private Transform _transformToSize;
 
         [SerializeField]
-        private TextMeshProUGUI _nametext;
+        private Vector3 _growOffset;
+
+       
 
 
-
+        private Vector3 _startPosition;
         private StoreItem _storeItem;
 
         private bool big;
@@ -47,9 +49,10 @@ namespace Daxi.VisualLayer.Store
         #endregion
 
         #region Methods
-        private void Start()
+        private void Awake()
         {
             _transformToSize.localScale= new Vector3(0.65f, 0.65f, 0.65f);
+            _startPosition = _transformToSize.localPosition;
 
         }
 
@@ -62,7 +65,6 @@ namespace Daxi.VisualLayer.Store
             }
             
             big = true;
-            _nametext.gameObject.SetActive(true);
             var wantedSize = Vector3.one;
             var lerp = 0f;
             while(lerp < 1f)
@@ -71,6 +73,7 @@ namespace Daxi.VisualLayer.Store
                 {
                     return;
                 }
+                _transformToSize.localPosition=Vector3.Lerp(_startPosition+_storeItem.PivotOffset, _startPosition+_growOffset+_storeItem.PivotOffset,lerp);
                 _transformToSize.localScale =Vector3.Lerp(new Vector3(0.65f, 0.65f, 0.65f), wantedSize,lerp) ;
                 lerp += Time.deltaTime*3;
                 await UniTask.Yield();
@@ -80,6 +83,7 @@ namespace Daxi.VisualLayer.Store
             {
                 return;
             }
+            _transformToSize.localPosition = _startPosition + _growOffset + _storeItem.PivotOffset;
             _transformToSize.localScale = wantedSize;
         }
         public async void Shrink()
@@ -92,30 +96,31 @@ namespace Daxi.VisualLayer.Store
             {
                 big = false;
             }
-            _nametext.gameObject.SetActive(false);
-
+            
             var wantedSize =new Vector3(0.65f, 0.65f, 0.65f);
             var lerp = 0f;
+            var growPosition = _startPosition+_growOffset + _storeItem.PivotOffset;
             while (lerp < 1f)
             {
                 if (_transformToSize == null)
                 {
                     return;
                 }
+                _transformToSize.localPosition = Vector3.Lerp(growPosition,_startPosition + _storeItem.PivotOffset, lerp);
                 _transformToSize.localScale = Vector3.Lerp(Vector3.one, wantedSize, lerp);
                 lerp += Time.deltaTime*3;
                 await UniTask.Yield();
             }
             _transformToSize.localScale = wantedSize;
+            _transformToSize.localPosition = _startPosition + _storeItem.PivotOffset;
         }
         public void SetData(StoreItem storeItem)
         {
             _storeItem = storeItem;
             _button.image.sprite = _storeItem.Sprite;
             _button.image.preserveAspect = true;
-            _nametext.text = _storeItem.name;
-
-            _nametext.gameObject.SetActive(false);
+           
+            _transformToSize.localPosition =_startPosition + _storeItem.PivotOffset;
         }
         #endregion
     }

@@ -15,5 +15,6 @@ MonoBehaviour:
   _id: 4
   _cost: 7
   _descriptionSprite: {fileID: 0}
-  _sprite: {fileID: 21300000, guid: 050267ba2ac6aed4fa4417daa932f02d, type: 3}
+  _sprite: {fileID: 21300000, guid: 1bba3ebeaa149eb44844d6874c1de45c, type: 3}
   _amount: 1
+  _pivotOffset: {x: 30, y: 0, z: 0}

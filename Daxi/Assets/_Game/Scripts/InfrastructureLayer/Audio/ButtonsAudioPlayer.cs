@@ -92,10 +92,11 @@ namespace Daxi.InfrastructureLayer.Audio
             // Create a list to store the results of the raycast
             var results = new List<RaycastResult>();
 
-            if(eventData==null || results==null)
+            if(eventData==null || results==null||EventSystem.current==null)
             {
                 return false;
             }
+            
             // Raycast using the GraphicsRaycaster of the EventSystem
             EventSystem.current.RaycastAll(eventData, results);
 

@@ -14,7 +14,7 @@ namespace Daxi.VisualLayer.SplashScreen
         public override void InstallBindings()
         {
             Container
-                .BindInterfacesAndSelfTo<SplashScreen>()
+                .Bind<SplashScreen>()
                 .FromInstance(_screen)
                 .AsSingle();
         }

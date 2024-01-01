@@ -86,7 +86,10 @@ namespace Daxi.InfrastructureLayer.AssetsManagment
 
         private void LoadSprite(int index)
         {
-           
+            if (_SetsLoaded[_sets[index]])
+            {
+                return; // Skip loading if already loaded
+            }
             AsyncOperationHandle<Sprite> handle = _sets[index].spriteRefrence.LoadAssetAsync<Sprite>();
             if(!handle.IsValid())
             {
@@ -109,9 +112,13 @@ namespace Daxi.InfrastructureLayer.AssetsManagment
 
         private void UnloadSprite(int index)
         {
+            if (!_SetsLoaded[_sets[index]])
+            {
+                return; // Skip loading if already loaded
+            }
             if (_sets[index].opHandle.IsValid())
             {
-                Addressables.Release(_sets[index].opHandle);         
+                 Addressables.Release(_sets[index].opHandle);         
                 _sets[index].MyRenderer.sprite = null;
             }
            

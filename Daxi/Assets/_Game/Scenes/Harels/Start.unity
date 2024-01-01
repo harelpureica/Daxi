@@ -462,9 +462,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _menusMusic: {fileID: 8300000, guid: fd6e4994bc593f740bc4647049dd6a71, type: 3}
-  _worldOneMusic: {fileID: 8300000, guid: 9fe82c388d6c62447bff1fbaf3195015, type: 3}
-  _worldTwoMusic: {fileID: 8300000, guid: 09da92d2c3dda8e47881a754642ade53, type: 3}
-  _worldThreeMusic: {fileID: 8300000, guid: 85b0c06166d1d5e46964d0492084e2cd, type: 3}
+  _worldOneMusic: {fileID: 8300000, guid: ef1eec25e42f70947b38204e87fe2fda, type: 3}
+  _worldTwoMusic: {fileID: 8300000, guid: fd3eb166653e80e4bb6e19938314fec8, type: 3}
+  _worldThreeMusic: {fileID: 8300000, guid: fbcd853745a4aa54a8af1d6455fc2287, type: 3}
+  _endGameClip: {fileID: 8300000, guid: 1d024179e02eee540864feb726cca923, type: 3}
   _audioSource: {fileID: 658954643}
 --- !u!4 &658954642
 Transform:

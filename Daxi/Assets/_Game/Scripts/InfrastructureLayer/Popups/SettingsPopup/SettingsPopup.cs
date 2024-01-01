@@ -27,7 +27,7 @@ namespace Daxi.InfrastructureLayer.Popups.SettingsPopup
         private Button _ContactButton;
 
         [SerializeField]
-        private Button _feedBackButton;
+        private Button _ratingButton;
 
         [SerializeField]
         private Button _TermsButton;
@@ -87,7 +87,7 @@ namespace Daxi.InfrastructureLayer.Popups.SettingsPopup
             _cheatInputConfirmBtn.gameObject.SetActive(false);
             _cheatInput.gameObject.SetActive(false);
             _ContactButton.onClick.AddListener(OnContactClick);
-            _feedBackButton.onClick.AddListener(OnFeedbackClick);
+            _ratingButton.onClick.AddListener(OnFeedbackClick);
             _TermsButton.onClick.AddListener(OnTermsClick);
             _cheatButton.onClick.AddListener(OnCheatClick);
             _cheatInputConfirmBtn.onClick.AddListener(OnCheatConfirmedClick);

@@ -23,7 +23,8 @@ namespace Daxi.DataLayer.StoreData
         [SerializeField]
         private int _amount;
 
-       
+        [SerializeField]
+        private Vector3 _pivotOffset;
         #endregion
 
         #region Propeties
@@ -32,7 +33,9 @@ namespace Daxi.DataLayer.StoreData
         public Sprite DescriptionSprite => _descriptionSprite;
         public Sprite Sprite  => _sprite;
 
-        public int Amount => _amount; 
+        public int Amount => _amount;
+
+        public Vector3 PivotOffset => _pivotOffset;
 
         #endregion
 

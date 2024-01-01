@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 2
   _cost: 4
-  _descriptionSprite: {fileID: 0}
-  _sprite: {fileID: 21300000, guid: 7664b9ca5257bdc4abbd4c6911558d93, type: 3}
+  _descriptionSprite: {fileID: 21300000, guid: 3c7cbe408d156ba49afcf1ebe2cba9ec, type: 3}
+  _sprite: {fileID: 21300000, guid: 426d72a821200914ab0e36f35384a033, type: 3}
   _amount: 1
+  _pivotOffset: {x: 20, y: -20, z: 0}

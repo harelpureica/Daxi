@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,11 +26,16 @@ namespace Daxi.InfrastructureLayer.Audio
         private AudioClip _worldThreeMusic;
 
         [SerializeField]
+        private AudioClip _endGameClip;
+
+        [SerializeField]
         private AudioSource _audioSource;
 
         private static MusicPlayer instance;
 
         private static bool _isPlaying;
+
+      
 
         #endregion
 
@@ -83,9 +89,8 @@ namespace Daxi.InfrastructureLayer.Audio
             {
                 await TransitionVolume(0f, 0.5F);
                 _audioSource.Stop();
-                _audioSource.time = 0f;
             }
-
+            _audioSource.time = 0f;
             _audioSource.clip = clip;
             _audioSource.Play();
             await TransitionVolume(1f, 0.5F);
@@ -153,6 +158,11 @@ namespace Daxi.InfrastructureLayer.Audio
                 await UniTask.Yield();
             }
             _audioSource.volume = wantedVolume;
+        }
+
+        public void PlayEndGame()
+        {
+            PlayClip(_endGameClip);
         }
 
         #endregion

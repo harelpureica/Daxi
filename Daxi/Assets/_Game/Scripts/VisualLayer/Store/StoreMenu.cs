@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.Device;
 using UnityEngine.UI;
 using Zenject;
+using static Daxi.VisualLayer.Store.StoreController;
 
 namespace Daxi.VisualLayer.Store
 {
@@ -21,6 +22,11 @@ namespace Daxi.VisualLayer.Store
         #endregion
 
         #region Fields      
+        [SerializeField]
+        private Vector3 _powersStateOffset;
+
+        [SerializeField]
+        private TextMeshProUGUI _itemNameText;
 
         [SerializeField]
         private float _centeringSpeed;
@@ -32,6 +38,9 @@ namespace Daxi.VisualLayer.Store
 
         [SerializeField]
         private RectTransform _rectTransformContent;
+
+        [SerializeField]
+        private Image _descriptionImage;
 
         [SerializeField]
         private float _itemSize;
@@ -55,9 +64,12 @@ namespace Daxi.VisualLayer.Store
 
         [Inject]
         private StoreController _controller;
-
+        
+        private StoreState _state;
 
         private bool _initializing;
+
+        private Vector3 _startPosition;
         #endregion
 
         #region Properties
@@ -66,8 +78,25 @@ namespace Daxi.VisualLayer.Store
         #endregion
 
         #region Methods
-        public void SetData(List<StoreItem>storeItems)
+        private void Start()
         {
+            _startPosition = transform.position;
+        }
+        public void SetData(List<StoreItem>storeItems, StoreState state)
+        {
+            if (state==StoreState.powers)
+            {
+                transform.position = _startPosition + _powersStateOffset;
+            }
+            else
+            {
+                transform.position = _startPosition ;
+            }
+            if(state==StoreState.skins)
+            {
+                _descriptionImage.sprite = null;
+            }
+            _state=state;
             _initializing = true;
             if (itemsUis.Count>0)
             {
@@ -113,7 +142,17 @@ namespace Daxi.VisualLayer.Store
             {
                 if (i == currentIndex)
                 {
+                    if (_state == StoreState.skins)
+                    {
+                        _descriptionImage.sprite = null;
+                    }
+                    else
+                    {
+                        _descriptionImage.sprite = itemsUis[i].MyStoreItem.DescriptionSprite;
+                        _descriptionImage.preserveAspect = true;
+                    }
                     itemsUis[i].Grow();
+                    _itemNameText.text= itemsUis[i].MyStoreItem.name;
                     if(_controller.State == StoreController.StoreState.pets)
                     {
                         char[] chars = _playerData.UnlockedPets.ToCharArray();

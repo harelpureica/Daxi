@@ -127,8 +127,18 @@ namespace Daxi.VisualLayer.Player
         }
         public async void AnimateDamaged(float _timeToAnimate)
         {
-            if(_animatingDamaged||_shouldAnimateWin||_shouldAnimateLose)
+            if(_animatingDamaged)
+            {              
+                return;
+            }
+            if( _shouldAnimateWin || _shouldAnimateLose)
             {
+                _animatingDamaged = true;
+                await SetSpriteAlphaRoutine(_timeToAnimate / 4f, 0.7f);
+                await SetSpriteAlphaRoutine(_timeToAnimate / 4f, 1f);
+                await SetSpriteAlphaRoutine(_timeToAnimate / 4f, 0.7f);
+                await SetSpriteAlphaRoutine(_timeToAnimate / 4f, 1f);
+                _animatingDamaged = false;
                 return;
             }
             _animatingDamaged=true;
@@ -144,8 +154,13 @@ namespace Daxi.VisualLayer.Player
         }
         private async UniTask SetSpriteAlphaRoutine(float timeToAnimate,float alpha)
         {
+            if(_spriteRenderer==null)
+            {
+                return;
+            }
             var lerp = 0f;
             var startColor = _spriteRenderer.material.color;
+
             while (lerp < 1)
             {
                 if(_spriteRenderer==null)

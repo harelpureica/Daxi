@@ -89,7 +89,7 @@ namespace Daxi.VisualLayer.Store
             _petsBtn.onClick.AddListener(() => SwitchState(StoreState.pets));
             _skinsBtn.onClick.AddListener(() => SwitchState(StoreState.skins));
             _selectBtn.onClick.AddListener(SelectItem);
-            _menu.SetData(_skins);
+            _menu.SetData(_skins,StoreState.skins);
             _state= StoreState.skins;
             _backBtn.onClick.AddListener(OnBackClick);
             
@@ -129,7 +129,7 @@ namespace Daxi.VisualLayer.Store
                     break;
 
             }
-            _menu.SetData(storeitems);
+            _menu.SetData(storeitems,_state);
             SetButtonsOutline(storeState);
 
         }

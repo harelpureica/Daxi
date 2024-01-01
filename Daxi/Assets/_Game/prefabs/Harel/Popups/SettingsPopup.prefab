@@ -37,8 +37,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 299, y: -287}
-  m_SizeDelta: {x: 179.07, y: 33.575}
+  m_AnchoredPosition: {x: -3, y: 253.1}
+  m_SizeDelta: {x: 108.383, y: 72.811}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7795735501589468509
 CanvasRenderer:
@@ -236,8 +236,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -93.76709, y: -286}
-  m_SizeDelta: {x: 597.7987, y: 38.125}
+  m_AnchoredPosition: {x: 198, y: 256.8}
+  m_SizeDelta: {x: 270.537, y: 80.8113}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7006394091694152878
 CanvasRenderer:
@@ -403,7 +403,7 @@ RectTransform:
   m_GameObject: {fileID: 4713923119280751343}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.0164, y: 2.0164, z: 2.0164}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6096321182967355036}
@@ -412,7 +412,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 339, y: -285}
+  m_AnchoredPosition: {x: -136, y: 247.2}
   m_SizeDelta: {x: 66.237, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9049842655103297237
@@ -1411,7 +1411,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c4d741093151f1d458f239ab14f44ee3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 77421a35defa5b94d8d9fcccbf211aff, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1561,7 +1561,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22.45
+  m_fontSize: 44.05
   m_fontSizeBase: 21.78
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1824,9 +1824,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'ok
-
-'
+  m_text: confirm
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2332,7 +2330,7 @@ MonoBehaviour:
   _closeClip: {fileID: 8300000, guid: 88bc2e3660fde8c4480d417981c021de, type: 3}
   _openClip: {fileID: 8300000, guid: 3630d699c9ac23a47b16338b38b658c5, type: 3}
   _ContactButton: {fileID: 5799384151227692211}
-  _feedBackButton: {fileID: 5799384152362533880}
+  _ratingButton: {fileID: 5799384152362533880}
   _TermsButton: {fileID: 5799384152056437712}
   _musicOnButton: {fileID: 5799384151823919378}
   _sfxOnButton: {fileID: 5799384152290910620}

@@ -80,3 +80,5 @@ MonoBehaviour:
   - MyScene: WorldThreeLevelSelection
     MyDependency:
     - Loading
+  - MyScene: EndGame
+    MyDependency: []

@@ -13,9 +13,10 @@ using Daxi.InfrastructureLayer.Popups.VerifyAge;
 using Daxi.InfrastructureLayer.ScenesManagment;
 using Daxi.Storage;
 using Daxi.VisualLayer.PostProcessing;
+using Google.Play.Review;
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -38,7 +39,7 @@ namespace Daxi.VisualLayer.MenuScene
         private SettingsPopup.SettingsPopupFactory settingsPopupFactory;
 
         [Inject(Id ="Play")]
-        private Button _playButton;
+        private Button _playButton;       
 
         [Inject(Id ="Shop")]
         private Button _shopButton;
@@ -91,6 +92,9 @@ namespace Daxi.VisualLayer.MenuScene
         [Inject]
         private ConfirmedTermsPopup.ConfirmedTermsPopupFactory _confirmedTermsPopupFactory;
 
+        private ReviewManager _reviewManager;
+        private PlayReviewInfo _playerReviewInfo;
+        private PlayReviewInfo _playReviewInfo;
 
         #endregion
 
@@ -127,7 +131,7 @@ namespace Daxi.VisualLayer.MenuScene
         }
         public async void Initialize()
         {
-            if (!MusicPlayer.IsPlaying)
+            if (!MusicPlayer.IsPlaying&&MusicPlayer.Instance!=null)
             {
                 MusicPlayer.Instance.PlayMenus();
             }
@@ -170,10 +174,6 @@ namespace Daxi.VisualLayer.MenuScene
                 }
             }
            
-           
-
-          
-            
             _shopButton.onClick.AddListener(OnShopClick);
             _playButton.onClick.AddListener(OnPlayClick);
         }
@@ -208,38 +208,60 @@ namespace Daxi.VisualLayer.MenuScene
         public async void OnSettingsClick()
         {
             _settingsBtn.interactable = false;
-            var popup=settingsPopupFactory.Create();
-            popup.Open();            
-            while(!popup.ConfirmedCheat&&!popup.PlayerClickedClose&&!popup.ContactButtonClicked&&!popup.TermsButtonClicked&&!popup.FeedBackButtonClicked)
-            {
-                await UniTask.Yield();
 
-            }  
+            var popup = settingsPopupFactory.Create();
+            popup.Open();
+
+            await UniTask.WaitUntil(() => popup.ConfirmedCheat || popup.PlayerClickedClose || popup.ContactButtonClicked || popup.TermsButtonClicked || popup.FeedBackButtonClicked);
+
             popup.Close();
+
             if (popup.TermsButtonClicked)
             {
                 await ConfirmedTermsPopupRoutine();
             }
-            if (popup.FeedBackButtonClicked)
+            else if (popup.FeedBackButtonClicked)
             {
-                Application.OpenURL(_playStoreURL);
-
+                _service.StartCoroutine(RequestAndLaunchReview());
             }
-            if (popup.ContactButtonClicked)
+            else if (popup.ContactButtonClicked)
             {
                 OpenGmailForContacting();
-
             }
-            if (popup.ConfirmedCheat)
+            else if (popup.ConfirmedCheat)
             {
                 await CheatPopup();
-
             }
+
             _service.DestroyObject(popup.gameObject);
             _settingsBtn.interactable = true;
 
         }
+      
 
+        private IEnumerator  RequestAndLaunchReview()
+        {
+            _reviewManager=new ReviewManager();
+            var requestFlowOperation = _reviewManager.RequestReviewFlow();
+          
+            yield return requestFlowOperation;
+            if (requestFlowOperation.Error != ReviewErrorCode.NoError)
+            {
+                yield break;
+            }
+            _playReviewInfo = requestFlowOperation.GetResult();
+
+
+            var launchFlowOperation = _reviewManager.LaunchReviewFlow(_playReviewInfo);
+            yield return launchFlowOperation;
+            _playReviewInfo = null; // Reset the object
+            if (launchFlowOperation.Error != ReviewErrorCode.NoError)
+            {
+                yield break;
+            }
+        }
+
+      
         private async UniTask ConfirmedTermsPopupRoutine()
         {
             var popup = _confirmedTermsPopupFactory.Create();

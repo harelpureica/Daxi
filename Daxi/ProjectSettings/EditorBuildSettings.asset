@@ -89,5 +89,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Game/Scenes/Harels/WorldThree/WorldThreeLevelSix.unity
     guid: 46abf2437c959dc4d8c7e3c2706bc6a7
+  - enabled: 1
+    path: Assets/_Game/Scenes/Harels/EndGame.unity
+    guid: b5abb04b16482214cab2666659560c9d
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 82c6137347a22724ba85204827cbfcae, type: 2}
