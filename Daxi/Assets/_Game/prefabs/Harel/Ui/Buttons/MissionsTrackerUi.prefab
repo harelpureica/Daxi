@@ -592,7 +592,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvas: {fileID: 5892653397124865453}
-  _clip: {fileID: 8300000, guid: cf7bf35c2606f9249af639bb6ae3bf3f, type: 3}
+  _clip: {fileID: 8300000, guid: fe92a8eff12b3eb41b7808aabba7cf23, type: 3}
   _audioSource: {fileID: 2408128269756437232}
   _text: {fileID: 3960516751611728871}
   _imageIndicatorPrefab: {fileID: 5342461373988700749, guid: fa78c541fb1fe8e48b902edfd28c0577, type: 3}

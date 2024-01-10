@@ -81,8 +81,9 @@ namespace Daxi.InfrastructureLayer.ScenesManagment
                     }
                 }
                 await _sceneLoader.LoadSceneAsync(_sceneSets[sceneIndex].MyScene, LoadSceneMode.Additive);
-                SceneManager.SetActiveScene(SceneManager.GetSceneByName( _sceneSets[sceneIndex].MyScene));
+               
             }
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(_sceneSets[sceneIndex].MyScene));
             isLoading = false;
 
         }

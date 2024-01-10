@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Zenject;
 
@@ -61,6 +62,9 @@ namespace Daxi.InfrastructureLayer.Popups.EndLevel
         [SerializeField]
         private Vector2 _parentLayoutLettersOffset;
 
+        [SerializeField]
+        private Sprite _nextWorldBtnSprite;
+
 
         private List<ImageIndicator> _imageIndicators = new();
 
@@ -70,7 +74,10 @@ namespace Daxi.InfrastructureLayer.Popups.EndLevel
 
         private Vector2 _parentLayoutStartPosition;
 
+       
+
         #endregion
+
 
         #region Properties
         public bool PlayerClickedHomeButton =>_playerClickedHomeButton;
@@ -93,6 +100,10 @@ namespace Daxi.InfrastructureLayer.Popups.EndLevel
                 _pageWin.gameObject.SetActive(true);
                 _pageLose.gameObject.SetActive(false);
                 _buttonImage.sprite = _levelPassedButtonSprite;
+                if(GetLastThreeChars(SceneManager.GetActiveScene().name)=="Six")
+                {
+                    _buttonImage.sprite = _nextWorldBtnSprite;
+                }
             }
             else
             {
@@ -143,6 +154,7 @@ namespace Daxi.InfrastructureLayer.Popups.EndLevel
 
             if (missionData.Mode == MissionData.MissionMode.letters)
             {
+                _parent.localScale *= 0.85f;
                 _parent.position= _parentLayoutStartPosition+ _parentLayoutLettersOffset;
             }else
             {
@@ -150,6 +162,17 @@ namespace Daxi.InfrastructureLayer.Popups.EndLevel
 
             }
             
+        }
+        string GetLastThreeChars(string input)
+        {
+            if (input.Length >= 3)
+            {
+                return input.Substring(input.Length - 3);
+            }
+            else
+            {
+                return input;
+            }
         }
 
         public void OnHomeClick()

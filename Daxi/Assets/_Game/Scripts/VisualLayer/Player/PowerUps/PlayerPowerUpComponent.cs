@@ -78,7 +78,7 @@ namespace Daxi.VisualLayer.Player.PowerUps
             _extraShieldAmount = playerData.Shields;
             _shieldAmount = playerData.Shields;
             _planksAmount = playerData.Planks;
-            _extraGumAmount = playerData.Gums;
+            _gumAmount = playerData.Gums;
             _playerPowerUpUi.SetData(_gumAmount, _shieldAmount, _planksAmount);
         }
         public void AddPowerUp()
@@ -142,7 +142,7 @@ namespace Daxi.VisualLayer.Player.PowerUps
         {
             switch (powerup.MyName)
             {
-                case "Plank":
+                case "Board":
                    
                     
                     Plank();

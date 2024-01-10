@@ -26,6 +26,8 @@ using UnityEngine.Rendering.Universal;
 using Daxi.VisualLayer.PostProcessing;
 using Daxi.InfrastructureLayer.Audio;
 using System.Collections.Generic;
+using Daxi.InfrastructureLayer.Ads;
+using GoogleMobileAds.Api;
 
 namespace Daxi.VisualLayer.Levels
 {
@@ -62,6 +64,9 @@ namespace Daxi.VisualLayer.Levels
         [Inject]
         private LevelData _levelData;
 
+        [Inject(Id ="Production")]
+        private bool _production;
+
         [Inject]
         private MissionsTracker _missionsTracker;
 
@@ -70,6 +75,9 @@ namespace Daxi.VisualLayer.Levels
 
         [Inject]
         private PlayerData _playerData;
+
+        [Inject]
+        private AdsManager _adsManager;
 
         [Inject]
         private AdForLifePopup.AdForLifePopupFactory adForLifePopupFactory;
@@ -94,7 +102,8 @@ namespace Daxi.VisualLayer.Levels
 
         private bool adForLifePopupSeen;
 
-        
+        private bool _rewarded;
+
 
 
         #endregion
@@ -324,14 +333,14 @@ namespace Daxi.VisualLayer.Levels
             if (immediet)
             {
                 await PlayerStopRoutine(false);
-                EndLevelPopupRoutine(false);
+                EndLevelPopupRoutine(false, false);
                 return;
             }
             if (adForLifePopupSeen)
             {
                 _playerManager.Active = false;
                 await _playerManager.AnimateSad();
-                await OutOfHeartsPopupRoutine();                
+                await OutOfHeartsPopupRoutine(true);                
                 return;
             }
            
@@ -353,30 +362,72 @@ namespace Daxi.VisualLayer.Levels
                 
                 if (immediet)
                 {
-                    EndLevelPopupRoutine(false);
+                    EndLevelPopupRoutine(false,false);
                 }
                 else
                 {
-                    await OutOfHeartsPopupRoutine();
+                    await OutOfHeartsPopupRoutine(false);
                 }
             }
             else
             {
-                if (MusicPlayer.Instance != null)
+               
+                _adsManager.Load_rewardedAd( (isEarned) => 
                 {
-                    MusicPlayer.Instance.Resume();
+                    HandleReward(isEarned);
+                });
+                while (!_adsManager.RewardedAdLoaded)
+                {
+                    await UniTask.Yield();
                 }
-                Debug.Log("watchingAdreworded");
-                _playerManager.AddLife();
-                await _countdownComponent.NumbersCountDown();
-                _playerManager.SetInvinsible(2500);
-                _playerManager.Active = true;
-                _playerDead = false;
+                _adsManager.Show_rewardedAd();
+                while (_adsManager.RewardedAdLoaded)
+                {
+                    await UniTask.Yield();
+                }
+               
+
 
             }
 
         }
-        private async UniTask OutOfHeartsPopupRoutine()
+        public async void HandleReward(bool isEarned)
+        {
+
+            if (isEarned)
+            {
+
+                if (_production)
+                {
+                    _playerManager.AddLife();
+                    await _countdownComponent.NumbersCountDown();
+                    if (MusicPlayer.Instance != null)
+                    {
+                        MusicPlayer.Instance.Resume();
+                    }
+                    _playerManager.SetInvinsible(2500);
+                    _playerManager.Active = true;
+                    _playerDead = false;
+                }
+            }
+            else
+            {
+
+                if (!_production)
+                {
+                    _playerManager.AddLife();
+                    await _countdownComponent.NumbersCountDown();
+                    if (MusicPlayer.Instance != null)
+                    {
+                        MusicPlayer.Instance.Resume();
+                    }
+                    _playerManager.SetInvinsible(2500);
+                    _playerManager.Active = true;
+                    _playerDead = false;
+                }
+            }
+        }
+        private async UniTask OutOfHeartsPopupRoutine(bool watchAd)
         {
             
             var OutOfHeartsPopup = outOfHeartsPopupFactory.Create();
@@ -390,6 +441,19 @@ namespace Daxi.VisualLayer.Levels
             OutOfHeartsPopup.Close();
             _volumeController.SetDof(false);
             await UniTask.Delay(500);
+            if(watchAd)
+            {
+                _adsManager.LoadInterstitialAd();
+                while (!_adsManager.InterstitialAdLoaded)
+                {
+                    await UniTask.Yield();
+                }
+                _adsManager.ShowInterstitialAd();
+                while (_adsManager.InterstitialAdLoaded)
+                {
+                    await UniTask.Yield();
+                }
+            }
             if (OutOfHeartsPopup.playerClickedHome)
             {
                 await _scenesLoader.LoadSceneAsync(ScenesNames.Menu);
@@ -440,14 +504,20 @@ namespace Daxi.VisualLayer.Levels
                     }
                 }
             }
-            if (!MusicPlayer.IsPlaying && MusicPlayer.Instance != null)
+            if (MusicPlayer.Instance != null)
             {
                 MusicPlayer.Instance.Stop();
             }
+            if(levelPassed&& _levelData.SceneName=="WorldThreeLevelSix")
+            {
+                LoadLevelSceneWithLoadingScreenAsync(_levelData.NextlevelSceneName, _levelData.SceneName);
+                return;
+            }
             await PlayerStopRoutine(levelPassed);
-            EndLevelPopupRoutine(levelPassed);
+            EndLevelPopupRoutine(levelPassed,true);
+
         }
-        private async  void EndLevelPopupRoutine(bool levelPassed)
+        private async  void EndLevelPopupRoutine(bool levelPassed,bool watchAd)
         {
             
             var popup = _endLevelPopupFactory.Create();
@@ -460,7 +530,20 @@ namespace Daxi.VisualLayer.Levels
             }
             popup.Close();
             _volumeController.SetDof(false);
-            await UniTask.Delay(500);
+            await UniTask.Delay(500);   
+            if(watchAd)
+            {
+                _adsManager.LoadInterstitialAd();
+                while (!_adsManager.InterstitialAdLoaded)
+                {
+                    await UniTask.Yield();
+                }
+                _adsManager.ShowInterstitialAd();
+                while (_adsManager.InterstitialAdLoaded)
+                {
+                    await UniTask.Yield();
+                }
+            }
             if (popup.PlayerClickedHomeButton)
             {
                 await _scenesLoader.LoadSceneAsync(ScenesNames.Menu);

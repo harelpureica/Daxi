@@ -40,6 +40,12 @@ namespace Daxi.VisualLayer.Store
         private RectTransform _rectTransformContent;
 
         [SerializeField]
+        private Image _selectBtnImage;
+
+        [SerializeField]
+        private Sprite _selectedItemBtnSprite;
+
+        [SerializeField]
         private Image _descriptionImage;
 
         [SerializeField]
@@ -216,11 +222,16 @@ namespace Daxi.VisualLayer.Store
                     break;
                 }
             }
+          
             if (unlocked)
             {
+                
                 _mainBtn.image.sprite = _mainBtnPink;
                 _mainBtnText.text = "";
-
+                if (_playerData.CharacterIndex.ToString() == storeItem.MyId)
+                {
+                    _mainBtn.image.sprite = _selectedItemBtnSprite;
+                }            
             }
             else
             {

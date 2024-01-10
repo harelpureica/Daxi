@@ -24,7 +24,7 @@ public class StartScreenManager : IInitializable
     private StorageManager _storageManager;
 
     
-    public async void Initialize()
+    public  void Initialize()
     {
         
         if (SystemInfo.deviceType==DeviceType.Handheld)
@@ -79,8 +79,7 @@ public class StartScreenManager : IInitializable
             
             
              _text.text=$"failed :{obj}";
-            await UniTask.Delay(3000);
-            Application.Quit();
+          
             
         }
     }

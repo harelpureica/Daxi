@@ -57,9 +57,13 @@ namespace Daxi.VisualLayer.Store
         [Inject(Id = "Skins")]
         private GameObject _skinsOutline;
 
+        [Inject(Id="SubTitle")]
+        private TextMeshProUGUI _subTitle;
 
         [Inject(Id = "Select")]
         private Button _selectBtn;
+
+       
 
 
         [Inject]
@@ -113,19 +117,22 @@ namespace Daxi.VisualLayer.Store
             {
                 case StoreState.skins:
                     storeitems = _skins;
-
+                    _subTitle.text = "The main character";
                     break;
 
                 case StoreState.powers:
                     storeitems = _powers;
+                    _subTitle.text = "Powers";
                     break;
 
                 case StoreState.pets:
                     storeitems = _pets;
+                    _subTitle.text = "The flying pet";
                     break;
 
                 case StoreState.hearts:
                     storeitems = _hearts;
+                    _subTitle.text = "Lifes";
                     break;
 
             }

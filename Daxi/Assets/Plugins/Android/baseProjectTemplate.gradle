@@ -3,9 +3,12 @@ allprojects {
         repositories {**ARTIFACTORYREPOSITORY**
             google()
             jcenter()
+        mavenCentral()
         }
 
         dependencies {
+          
+
             // If you are changing the Android Gradle Plugin version, make sure it is compatible with the Gradle version preinstalled with Unity
             // See which Gradle version is preinstalled with Unity here https://docs.unity3d.com/Manual/android-gradle-overview.html
             // See official Gradle and Android Gradle Plugin compatibility table here https://developer.android.com/studio/releases/gradle-plugin#updating-gradle
@@ -18,6 +21,7 @@ allprojects {
     repositories {**ARTIFACTORYREPOSITORY**
         google()
         jcenter()
+        mavenCentral()
         flatDir {
             dirs "${project(':unityLibrary').projectDir}/libs"
         }

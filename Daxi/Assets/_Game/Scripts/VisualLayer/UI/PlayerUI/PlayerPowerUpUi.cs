@@ -51,7 +51,7 @@ namespace Daxi.VisualLayer.UI.PlayerUI
             }
             if (planksAmount > 0)
             {
-                AddButton(GetPowerData("Plank"), planksAmount);
+                AddButton(GetPowerData("Board"), planksAmount);
             }
         }   
         

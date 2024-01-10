@@ -160,9 +160,15 @@ namespace Daxi.InfrastructureLayer.Audio
             _audioSource.volume = wantedVolume;
         }
 
-        public void PlayEndGame()
+        public async void PlayEndGame()
         {
-            PlayClip(_endGameClip);
+            if (_audioSource.isPlaying)
+            {
+                await TransitionVolume(0f, 0.5F);
+                _audioSource.Stop();
+            }
+            await TransitionVolume(1, 0.5F);
+            _audioSource.PlayOneShot(_endGameClip);
         }
 
         #endregion

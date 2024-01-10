@@ -73,11 +73,19 @@ namespace Daxi.VisualLayer.Store.Installers
         [SerializeField]
         private TextMeshProUGUI _mainBtnText;
 
+        [SerializeField]
+        private TextMeshProUGUI _subTitleText;
+
         #endregion
 
         #region Methods
         public override void InstallBindings()
         {
+            Container
+                .Bind<TextMeshProUGUI>()
+                .WithId("SubTitle")
+                .FromInstance(_subTitleText)
+                .AsTransient();
             Container
               .Bind<Sprite>()
               .WithId("YellowBtn")

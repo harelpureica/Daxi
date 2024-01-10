@@ -65,7 +65,7 @@ namespace Daxi.VisualLayer.Store
             }
             
             big = true;
-            var wantedSize = Vector3.one;
+            var wantedSize = new Vector3(0.85f,0.85f,0.85f);
             var lerp = 0f;
             while(lerp < 1f)
             {
@@ -73,7 +73,15 @@ namespace Daxi.VisualLayer.Store
                 {
                     return;
                 }
-                _transformToSize.localPosition=Vector3.Lerp(_startPosition+_storeItem.PivotOffset, _startPosition+_growOffset+_storeItem.PivotOffset,lerp);
+                if(_storeController.State==StoreController.StoreState.hearts|| _storeController.State == StoreController.StoreState.powers)
+                {
+
+                }
+                else
+                {
+                    _transformToSize.localPosition = Vector3.Lerp(_startPosition + _storeItem.PivotOffset, _startPosition + _growOffset + _storeItem.PivotOffset, lerp);
+
+                }
                 _transformToSize.localScale =Vector3.Lerp(new Vector3(0.65f, 0.65f, 0.65f), wantedSize,lerp) ;
                 lerp += Time.deltaTime*3;
                 await UniTask.Yield();
@@ -83,7 +91,14 @@ namespace Daxi.VisualLayer.Store
             {
                 return;
             }
-            _transformToSize.localPosition = _startPosition + _growOffset + _storeItem.PivotOffset;
+            if (_storeController.State == StoreController.StoreState.hearts || _storeController.State == StoreController.StoreState.powers)
+            {
+
+            }
+            else
+            {
+                _transformToSize.localPosition = _startPosition + _growOffset + _storeItem.PivotOffset;
+            }
             _transformToSize.localScale = wantedSize;
         }
         public async void Shrink()
@@ -106,13 +121,27 @@ namespace Daxi.VisualLayer.Store
                 {
                     return;
                 }
-                _transformToSize.localPosition = Vector3.Lerp(growPosition,_startPosition + _storeItem.PivotOffset, lerp);
-                _transformToSize.localScale = Vector3.Lerp(Vector3.one, wantedSize, lerp);
+                if (_storeController.State == StoreController.StoreState.hearts || _storeController.State == StoreController.StoreState.powers)
+                {
+
+                }
+                else
+                {
+                    _transformToSize.localPosition = Vector3.Lerp(growPosition, _startPosition + _storeItem.PivotOffset, lerp);
+                }
+                _transformToSize.localScale = Vector3.Lerp(new Vector3(0.85f, 0.85f, 0.85f), wantedSize, lerp);
                 lerp += Time.deltaTime*3;
                 await UniTask.Yield();
             }
             _transformToSize.localScale = wantedSize;
-            _transformToSize.localPosition = _startPosition + _storeItem.PivotOffset;
+            if (_storeController.State == StoreController.StoreState.hearts || _storeController.State == StoreController.StoreState.powers)
+            {
+
+            }
+            else
+            {
+                _transformToSize.localPosition = _startPosition + _storeItem.PivotOffset;
+            }
         }
         public void SetData(StoreItem storeItem)
         {

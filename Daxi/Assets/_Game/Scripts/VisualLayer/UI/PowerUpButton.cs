@@ -53,7 +53,7 @@ namespace Daxi.VisualLayer.UI
             _fillImage.sprite = _powerUp.Sprite;
             _fillImage.fillAmount = 0;
             _daxiButton.OnClickDown += PowerUp;
-            if (_powerUp.MyName == "Plank")
+            if (_powerUp.MyName == "Board")
             {
                 _fillImage.enabled = false;
             }
@@ -67,7 +67,7 @@ namespace Daxi.VisualLayer.UI
         }
         public void UpdateFillAmount(GameItemData powerUp,float fill)
         {
-            if(_powerUp!= powerUp|| _powerUp.MyName == "Plank")
+            if(_powerUp!= powerUp|| _powerUp.MyName == "Board")
             {
                 return;
             }          

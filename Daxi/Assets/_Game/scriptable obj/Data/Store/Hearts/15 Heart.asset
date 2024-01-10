@@ -17,4 +17,4 @@ MonoBehaviour:
   _descriptionSprite: {fileID: 21300000, guid: eccf74f698e314b4d9fe01ce0e7dd18f, type: 3}
   _sprite: {fileID: 21300000, guid: 4af2f2cee1c8c55448334954201b0aec, type: 3}
   _amount: 15
-  _pivotOffset: {x: 55, y: -60, z: 0}
+  _pivotOffset: {x: 55, y: -30, z: 0}

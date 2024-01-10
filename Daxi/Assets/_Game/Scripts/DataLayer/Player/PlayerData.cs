@@ -65,12 +65,14 @@ namespace Daxi.DataLayer.Player
         public void SetDataFromPopup(int characterIndex, int unlockedLevels, int gums, int planks, int shields, int hearts,int petIndex)
         {
             _character = characterIndex;
-            _unlockedLevels = unlockedLevels;
+            UnlockCharacter(characterIndex);
+            _unlockedLevels = unlockedLevels;           
             _gums = gums;
             _planks = planks;
             _shields = shields;
             _hearts = hearts;
             _petIndex=petIndex;
+            UnlockPet(petIndex);
             OnDataChenged?.Invoke();
         }
         public string GetStringData()

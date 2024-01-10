@@ -182,7 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _button: {fileID: 2821990045468275805}
   _transformToSize: {fileID: 9070707482644325612}
-  _growOffset: {x: 0, y: 65, z: 0}
+  _growOffset: {x: 0, y: 40, z: 0}
 --- !u!1 &7834713738801526927
 GameObject:
   m_ObjectHideFlags: 0
