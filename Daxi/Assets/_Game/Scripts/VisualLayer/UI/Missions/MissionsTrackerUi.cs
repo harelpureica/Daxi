@@ -96,13 +96,14 @@ namespace Daxi.VisualLayer.UI.Missions
         }
         public void OnMissionTrackingHandler(bool completed, int requirmentsPassed, int requirments,Dictionary<string,bool>lettersRequierments)
         {
-            if(completed&&!playedAudio)
-            {
-                playedAudio = true;
-                _audioSource.PlayOneShot(_clip);
-            }
+          
             if (_missionData.Mode == MissionMode.letters)
             {
+                if (completed && !playedAudio)
+                {
+                    playedAudio = true;
+                    _audioSource.PlayOneShot(_clip);
+                }
                 if (lettersRequierments == null )
                 {
                     for (int i = 0; i < _missionData.Items.Count; i++)
@@ -130,6 +131,11 @@ namespace Daxi.VisualLayer.UI.Missions
             }
             if (_missionData.Mode == MissionMode.collectables)
             {
+                if (completed && !playedAudio)
+                {
+                    playedAudio = true;
+                    _audioSource.PlayOneShot(_clip);
+                }
                 _text.text = $"{requirmentsPassed}/{requirments}";
 
             }

@@ -157,8 +157,33 @@ namespace Daxi.VisualLayer.Store
                         _descriptionImage.sprite = itemsUis[i].MyStoreItem.DescriptionSprite;
                         _descriptionImage.preserveAspect = true;
                     }
+                    itemsUis[i].MyStoreItem.name.Split(" ");
                     itemsUis[i].Grow();
-                    _itemNameText.text= itemsUis[i].MyStoreItem.name;
+
+                    switch (itemsUis[i].MyStoreItem.MyId)
+                    {
+                        case "Gum":
+                            _itemNameText.text = $"{itemsUis[i].MyStoreItem.Amount} Bubble {itemsUis[i].MyStoreItem.MyId}s";
+                            break;
+
+                        case "Shield":
+                            _itemNameText.text = $"{itemsUis[i].MyStoreItem.Amount} {itemsUis[i].MyStoreItem.MyId}s";
+                            break;
+
+                        case "Board":
+                            _itemNameText.text = $"{itemsUis[i].MyStoreItem.Amount} {itemsUis[i].MyStoreItem.MyId}s";
+                            break;
+
+                        case  "Heart":
+                            _itemNameText.text = $"{itemsUis[i].MyStoreItem.Amount} {itemsUis[i].MyStoreItem.MyId}s";
+
+                            break;
+
+                        default :
+                            _itemNameText.text = $"{itemsUis[i].MyStoreItem.name}";
+                            break;
+                    }
+                    
                     if(_controller.State == StoreController.StoreState.pets)
                     {
                         char[] chars = _playerData.UnlockedPets.ToCharArray();
@@ -228,10 +253,21 @@ namespace Daxi.VisualLayer.Store
                 
                 _mainBtn.image.sprite = _mainBtnPink;
                 _mainBtnText.text = "";
-                if (_playerData.CharacterIndex.ToString() == storeItem.MyId)
+                if(_controller.State==StoreState.pets)
                 {
-                    _mainBtn.image.sprite = _selectedItemBtnSprite;
-                }            
+                    if (_playerData.PetIndex.ToString() == storeItem.MyId)
+                    {
+                        _mainBtn.image.sprite = _selectedItemBtnSprite;
+                    }
+                }
+                if (_controller.State == StoreState.skins)
+                {
+
+                    if (_playerData.CharacterIndex.ToString() == storeItem.MyId)
+                    {
+                        _mainBtn.image.sprite = _selectedItemBtnSprite;
+                    }
+                }
             }
             else
             {

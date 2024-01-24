@@ -274,6 +274,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefab: {fileID: 8273781891289685122, guid: cd7352f064e032c4ea8fe137cdb449d5, type: 3}
+  _skins:
+  - {fileID: 11400000, guid: 002ad796a871c1b4eb191c4f51bbfd03, type: 2}
+  - {fileID: 11400000, guid: 1febd44db23960242b5923d64f491e79, type: 2}
+  - {fileID: 11400000, guid: c54b83c961ae3554bb06124fcb62c93f, type: 2}
+  - {fileID: 11400000, guid: 298b1859216408649b00c291c1bcef7f, type: 2}
+  - {fileID: 11400000, guid: a784b41fd4c8cfa4abfa8b8cd32c86a9, type: 2}
+  - {fileID: 11400000, guid: 32208552cd493b641bc51ffee7d80b21, type: 2}
+  - {fileID: 11400000, guid: fdd3ea97f049b4e4192b1082ba60585b, type: 2}
+  _pets:
+  - {fileID: 11400000, guid: 060c6d4e2a5815640a0aff012753729b, type: 2}
+  - {fileID: 11400000, guid: f12ebac2cc68851489afce5c478edd41, type: 2}
+  - {fileID: 11400000, guid: 8998d8768d5f70443bfad60cb84e9a84, type: 2}
+  - {fileID: 11400000, guid: 1ba5770aaaad4fb41af91ad2e476a4a9, type: 2}
+  - {fileID: 11400000, guid: c61f265cb15d4d948be03ce770929013, type: 2}
+  _hearts:
+  - {fileID: 11400000, guid: f35762a2b776dbf4aba5e383c5a1fc91, type: 2}
+  - {fileID: 11400000, guid: 2ae7d6b20f4681247bd85e6b1fa60470, type: 2}
+  - {fileID: 11400000, guid: 737d6031831e9224898fe0aa4220585d, type: 2}
+  _powers:
+  - {fileID: 11400000, guid: a84b8a966b3af6d44bdf925fb9c1eaf9, type: 2}
+  - {fileID: 11400000, guid: a74b0246fa7308b459c5f6283fd054be, type: 2}
+  - {fileID: 11400000, guid: bdbdfde8dbc1a1145911ec70b2fe77b7, type: 2}
 --- !u!114 &21884470
 MonoBehaviour:
   m_ObjectHideFlags: 0

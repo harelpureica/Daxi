@@ -154,8 +154,8 @@ namespace Daxi.VisualLayer.Levels
             await _playerManager.Initialize(_playerData);
         }
         public async void StartLevel()
-        {
-            if(MusicPlayer.IsPlaying)
+        {           
+            if (MusicPlayer.IsPlaying)
             {
                 await MusicPlayer.Instance.Stop();
             }
@@ -187,7 +187,8 @@ namespace Daxi.VisualLayer.Levels
 
         private async void OnMissionButtonPressed()
         {
-            if(MyState!=LevelState.run)
+          
+            if (MyState!=LevelState.run||PlayerDead)
             {
                 return;
             }
@@ -359,10 +360,10 @@ namespace Daxi.VisualLayer.Levels
             if (popup.PlayerClickedClose)
             {
 
-                
+
                 if (immediet)
                 {
-                    EndLevelPopupRoutine(false,false);
+                    EndLevelPopupRoutine(false, false);
                 }
                 else
                 {
@@ -371,62 +372,30 @@ namespace Daxi.VisualLayer.Levels
             }
             else
             {
-               
-                _adsManager.Load_rewardedAd( (isEarned) => 
+
+
+                _adsManager.Show_rewardedAd(() =>
                 {
-                    HandleReward(isEarned);
+                    _playerManager.AddLife();
+
                 });
-                while (!_adsManager.RewardedAdLoaded)
+
+                while (!_adsManager.RewardedAdClosed)
                 {
                     await UniTask.Yield();
                 }
-                _adsManager.Show_rewardedAd();
-                while (_adsManager.RewardedAdLoaded)
+                await _countdownComponent.NumbersCountDown();
+                if (MusicPlayer.Instance != null)
                 {
-                    await UniTask.Yield();
+                    MusicPlayer.Instance.Resume();
                 }
-               
-
-
+                _playerManager.SetInvinsible(2500);
+                _playerManager.Active = true;
+                _playerDead = false;
             }
 
         }
-        public async void HandleReward(bool isEarned)
-        {
-
-            if (isEarned)
-            {
-
-                if (_production)
-                {
-                    _playerManager.AddLife();
-                    await _countdownComponent.NumbersCountDown();
-                    if (MusicPlayer.Instance != null)
-                    {
-                        MusicPlayer.Instance.Resume();
-                    }
-                    _playerManager.SetInvinsible(2500);
-                    _playerManager.Active = true;
-                    _playerDead = false;
-                }
-            }
-            else
-            {
-
-                if (!_production)
-                {
-                    _playerManager.AddLife();
-                    await _countdownComponent.NumbersCountDown();
-                    if (MusicPlayer.Instance != null)
-                    {
-                        MusicPlayer.Instance.Resume();
-                    }
-                    _playerManager.SetInvinsible(2500);
-                    _playerManager.Active = true;
-                    _playerDead = false;
-                }
-            }
-        }
+       
         private async UniTask OutOfHeartsPopupRoutine(bool watchAd)
         {
             
@@ -443,16 +412,12 @@ namespace Daxi.VisualLayer.Levels
             await UniTask.Delay(500);
             if(watchAd)
             {
-                _adsManager.LoadInterstitialAd();
-                while (!_adsManager.InterstitialAdLoaded)
-                {
-                    await UniTask.Yield();
-                }
+               
                 _adsManager.ShowInterstitialAd();
-                while (_adsManager.InterstitialAdLoaded)
+                while (!_adsManager.InterstitialClosed)
                 {
                     await UniTask.Yield();
-                }
+                }               
             }
             if (OutOfHeartsPopup.playerClickedHome)
             {
@@ -508,12 +473,13 @@ namespace Daxi.VisualLayer.Levels
             {
                 MusicPlayer.Instance.Stop();
             }
-            if(levelPassed&& _levelData.SceneName=="WorldThreeLevelSix")
+            await PlayerStopRoutine(levelPassed);
+            if (levelPassed&& _levelData.SceneName=="WorldThreeLevelSix")
             {
-                LoadLevelSceneWithLoadingScreenAsync(_levelData.NextlevelSceneName, _levelData.SceneName);
+                _scenesLoader.LoadSceneAsync(_levelData.NextlevelSceneName);
                 return;
             }
-            await PlayerStopRoutine(levelPassed);
+           
             EndLevelPopupRoutine(levelPassed,true);
 
         }
@@ -532,14 +498,9 @@ namespace Daxi.VisualLayer.Levels
             _volumeController.SetDof(false);
             await UniTask.Delay(500);   
             if(watchAd)
-            {
-                _adsManager.LoadInterstitialAd();
-                while (!_adsManager.InterstitialAdLoaded)
-                {
-                    await UniTask.Yield();
-                }
+            {               
                 _adsManager.ShowInterstitialAd();
-                while (_adsManager.InterstitialAdLoaded)
+                while (_adsManager.InterstitialClosed)
                 {
                     await UniTask.Yield();
                 }

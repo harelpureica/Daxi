@@ -18,6 +18,6 @@ MonoBehaviour:
   _planks: 0
   _shields: 0
   _hearts: 0
-  _petIndex: 0
+  _petIndex: 1
   _unlockedCharacters: 0
   _unlockedPets: 0

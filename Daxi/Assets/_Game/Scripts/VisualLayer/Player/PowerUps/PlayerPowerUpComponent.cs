@@ -82,40 +82,62 @@ namespace Daxi.VisualLayer.Player.PowerUps
             _playerPowerUpUi.SetData(_gumAmount, _shieldAmount, _planksAmount);
         }
         public void AddPowerUp()
-        {
-            if(_gumAmount>0&&_planksAmount>0&&_shieldAmount>0)
+        {                       
+            if (_gumAmount > 0 && _shieldAmount > 0 && _planksAmount > 0)
             {
-                return;
-            }
-            var powerupAdded = false;
-            while(!powerupAdded)
-            {               
                 var random = UnityEngine.Random.Range(0, 3);
                 switch (random)
                 {
                     case 0:
-                       
-                        if (_gumAmount <= 0)
-                        {
-                            _gumAmount++;
-                            powerupAdded = true;
-                        }
+                        _gumAmount++;
                         break;
                     case 1:
-                        if (_shieldAmount <= 0)
-                        {
-                            _shieldAmount++;
-                            powerupAdded = true;
-                        }
+
+                        _shieldAmount++;
                         break;
                     case 2:
-                        if (_planksAmount <= 0)
-                        {
-                            _planksAmount++;
-                            powerupAdded = true;
 
-                        }
+                        _planksAmount++;
                         break;
+                }
+
+            }
+            else
+            {
+
+
+                var powerupAdded = false;
+
+                while (!powerupAdded)
+                {
+
+                    var random = UnityEngine.Random.Range(0, 3);
+                    switch (random)
+                    {
+                        case 0:
+
+                            if (_gumAmount <= 0)
+                            {
+                                _gumAmount++;
+                                powerupAdded = true;
+                            }
+                            break;
+                        case 1:
+                            if (_shieldAmount <= 0)
+                            {
+                                _shieldAmount++;
+                                powerupAdded = true;
+                            }
+                            break;
+                        case 2:
+                            if (_planksAmount <= 0)
+                            {
+                                _planksAmount++;
+                                powerupAdded = true;
+
+                            }
+                            break;
+                    }
                 }
             }
             _playerManager.PlayClip(PlayersClipInfo.PlayersClipType.power);                                          
@@ -149,8 +171,7 @@ namespace Daxi.VisualLayer.Player.PowerUps
                     if (_planksAmount <= _extraPlanksAmount)
                     {
                         _extraPlanksAmount--;
-                        OnExtraPlankUsed?.Invoke();
-
+                        OnExtraPlankUsed?.Invoke();                   
                     }
                     _playerManager.PlayClip(PlayersClipInfo.PlayersClipType.plank);
                     _planksAmount--;
@@ -171,6 +192,7 @@ namespace Daxi.VisualLayer.Player.PowerUps
                     {
                         _extraGumAmount--;
                         OnExtraGumUsed?.Invoke();
+
                     }
                     _gumAmount--;
 

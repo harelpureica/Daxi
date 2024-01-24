@@ -7596,7 +7596,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 1a2ce440068844f4e9a82cd1a274ea90, type: 2}
     - target: {fileID: 2834900270162877339, guid: 8bb624a47d947f34bbb43be020bdb7ad, type: 3}
       propertyPath: immedietKill
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2834900270171424229, guid: 8bb624a47d947f34bbb43be020bdb7ad, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7608,23 +7608,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2834900270733582247, guid: 8bb624a47d947f34bbb43be020bdb7ad, type: 3}
       propertyPath: immedietKill
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2834900270823916763, guid: 8bb624a47d947f34bbb43be020bdb7ad, type: 3}
       propertyPath: immedietKill
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2834900270942628181, guid: 8bb624a47d947f34bbb43be020bdb7ad, type: 3}
       propertyPath: immedietKill
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2834900271362099760, guid: 8bb624a47d947f34bbb43be020bdb7ad, type: 3}
       propertyPath: immedietKill
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2834900271408637771, guid: 8bb624a47d947f34bbb43be020bdb7ad, type: 3}
       propertyPath: immedietKill
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3834545550107654054, guid: 8bb624a47d947f34bbb43be020bdb7ad, type: 3}
       propertyPath: m_Name
@@ -7708,7 +7708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7379949533222639318, guid: 8bb624a47d947f34bbb43be020bdb7ad, type: 3}
       propertyPath: orthographic size
-      value: 5.387755
+      value: 5.9755063
       objectReference: {fileID: 0}
     - target: {fileID: 8543750489892071887, guid: 8bb624a47d947f34bbb43be020bdb7ad, type: 3}
       propertyPath: _clip

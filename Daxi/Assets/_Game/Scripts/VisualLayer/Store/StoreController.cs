@@ -276,11 +276,15 @@ namespace Daxi.VisualLayer.Store
         }
         private async UniTask<bool> Purchase(StoreItem storeItem)
         {
-            var Purchased = true;
+           
+            var purchased = false;
+            if (_state == StoreState.skins || _state == StoreState.pets)
+            {
+                purchased = true;
+            }
 
-           
-           
-            return Purchased;
+
+                return purchased;
         }
 
       
