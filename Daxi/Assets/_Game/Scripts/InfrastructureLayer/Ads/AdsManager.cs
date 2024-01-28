@@ -4,13 +4,11 @@ using System;
 using UnityEngine;
 using Zenject;
 using GoogleMobileAds.Api;
-using UnityEngine.UIElements;
 using Cysharp.Threading.Tasks;
-using UnityEngine.SceneManagement;
 
 namespace Daxi.InfrastructureLayer.Ads
 {
-    public class AdsManager : IInitializable
+    public class AdsManager : MonoBehaviour
     {
 
         #region Fields
@@ -24,40 +22,37 @@ namespace Daxi.InfrastructureLayer.Ads
         private bool _rewardedAdClosed;
 
         private bool _interstitialClosed;
+        
 
         public bool RewardedAdClosed => _rewardedAdClosed; 
         public bool InterstitialClosed=> _interstitialClosed; 
         #endregion
 
         #region Methods
-        public   void Initialize()
+        private  async void Start()
         {        
+            await UniTask.Delay(1000);
             MobileAds.RaiseAdEventsOnUnityMainThread = true;
             RequestConfiguration requestConfiguration = new RequestConfiguration
             {
                 MaxAdContentRating = MaxAdContentRating.G,
                 TagForChildDirectedTreatment = TagForChildDirectedTreatment.True,                
             };     
-            MobileAds.SetRequestConfiguration(requestConfiguration);
-            
+            MobileAds.SetRequestConfiguration(requestConfiguration);            
             MobileAds.Initialize((status) => 
             {
+                
                 Debug.Log("ads initialized");
                 LoadInterstitialAd();
                 Load_rewardedAd();
 
-            });
-           
-           
-
+            });                     
         }       
        
         #region Interstitial
 
         public void LoadInterstitialAd()
         {
-
-          
 
             var adRequest = new AdRequest();            
             adRequest.Keywords.Add("unity-admob-sample");
@@ -67,7 +62,7 @@ namespace Daxi.InfrastructureLayer.Ads
             {
                 if (error != null || ad == null)
                 {
-                    Debug.Log("Interstitial ad failed to load" + error);
+                    Debug.LogError("Interstitial ad failed to load" + error);
                     return;
                 }
 
@@ -116,7 +111,6 @@ namespace Daxi.InfrastructureLayer.Ads
             ad.OnAdFullScreenContentClosed += () =>
             {
                 _interstitialClosed = true;
-                _interstitialAd.Destroy();
                 LoadInterstitialAd();
                 Debug.Log("Interstitial ad full screen content closed.");
             };
@@ -143,7 +137,7 @@ namespace Daxi.InfrastructureLayer.Ads
             {
                 if (error != null || ad == null)
                 {
-                    Debug.Log("Rewarded failed to load" + error);
+                    Debug.LogError("Rewarded failed to load" + error);
                     return;
                 }
 
@@ -171,8 +165,8 @@ namespace Daxi.InfrastructureLayer.Ads
             // Raised when the ad is estimated to have earned money.
             ad.OnAdPaid += (AdValue adValue) =>
             {
-              
-              
+                Debug.Log("Rewarded ad paid");
+
             };
             // Raised when an impression is recorded for an ad.
             ad.OnAdImpressionRecorded += () =>
@@ -193,7 +187,7 @@ namespace Daxi.InfrastructureLayer.Ads
             ad.OnAdFullScreenContentClosed += () =>
             {
                
-                ad.Destroy();
+               
                 Load_rewardedAd();
                 _rewardedAdClosed = true;
                 Debug.Log("Rewarded ad full screen content closed.");
