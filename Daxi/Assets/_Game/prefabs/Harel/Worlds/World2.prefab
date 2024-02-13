@@ -6159,7 +6159,6 @@ GameObject:
   - component: {fileID: 1726973961951281936}
   - component: {fileID: 1726973961951281951}
   - component: {fileID: 1726973961951281937}
-  - component: {fileID: 1726973961951281938}
   - component: {fileID: 1726973961951281939}
   - component: {fileID: 1726973961951281940}
   - component: {fileID: 1726973961951281941}
@@ -6167,6 +6166,7 @@ GameObject:
   - component: {fileID: 1726973961951282024}
   - component: {fileID: 1726973961951282025}
   - component: {fileID: 3292444173823035956}
+  - component: {fileID: 1717045089068271157}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -6204,7 +6204,6 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 1726973961951281937}
-  - {fileID: 1726973961951281938}
   - {fileID: 1726973961951281939}
   - {fileID: 1726973961951281940}
   - {fileID: 1726973961951281941}
@@ -6212,6 +6211,7 @@ MonoBehaviour:
   - {fileID: 1726973961951282024}
   - {fileID: 1726973961951282025}
   - {fileID: 3292444173823035956}
+  - {fileID: 1717045089068271157}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -6244,18 +6244,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefab: {fileID: 6589886012823938913, guid: 2f0e231f88c55e341ae8c1da7028efa4, type: 3}
---- !u!114 &1726973961951281938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1726973961951281950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d940db2a378d4844b39ec8f62df6adc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1726973961951281939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6360,6 +6348,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cam: {fileID: 6049775943895891781}
   _settings: {fileID: 11400000, guid: 3351d46776e098043a46e4f09b33001e, type: 2}
+--- !u!114 &1717045089068271157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726973961951281950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d940db2a378d4844b39ec8f62df6adc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1726973962054444391
 GameObject:
   m_ObjectHideFlags: 0
@@ -9065,7 +9065,7 @@ Camera:
   far clip plane: 200
   field of view: 65
   orthographic: 1
-  orthographic size: 6.015668
+  orthographic size: 5.387755
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

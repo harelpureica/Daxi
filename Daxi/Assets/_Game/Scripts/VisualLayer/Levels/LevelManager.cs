@@ -28,6 +28,7 @@ using Daxi.InfrastructureLayer.Audio;
 using System.Collections.Generic;
 using Daxi.InfrastructureLayer.Ads;
 using GoogleMobileAds.Api;
+using Daxi.InfrastructureLayer.Signals;
 
 namespace Daxi.VisualLayer.Levels
 {
@@ -37,6 +38,10 @@ namespace Daxi.VisualLayer.Levels
 
         [Inject]
         private ILoadingScreen _loadingScreen;
+
+        [Inject]
+        private SignalBus _signalBus;
+
         [Inject]
         private MissionPopup.MissionPopupFactory _missionPopupFactory;
 
@@ -154,7 +159,9 @@ namespace Daxi.VisualLayer.Levels
             await _playerManager.Initialize(_playerData);
         }
         public async void StartLevel()
-        {           
+        {
+            _adsManager.OnRewardRecived -= OnReward;
+            _adsManager.OnRewardRecived += OnReward;
             if (MusicPlayer.IsPlaying)
             {
                 await MusicPlayer.Instance.Stop();
@@ -373,27 +380,26 @@ namespace Daxi.VisualLayer.Levels
             else
             {
 
-
-                _adsManager.Show_rewardedAd(() =>
-                {
-                    _playerManager.AddLife();
-
-                });
+                _adsManager.Show_rewardedAd();
 
                 while (!_adsManager.RewardedAdClosed)
                 {
                     await UniTask.Yield();
-                }
-                await _countdownComponent.NumbersCountDown();
-                if (MusicPlayer.Instance != null)
-                {
-                    MusicPlayer.Instance.Resume();
-                }
-                _playerManager.SetInvinsible(2500);
-                _playerManager.Active = true;
-                _playerDead = false;
+                }                              
             }
 
+        }
+        private async void OnReward()
+        {
+            _playerManager.AddLife();
+            await _countdownComponent.NumbersCountDown();
+            if (MusicPlayer.Instance != null)
+            {
+                MusicPlayer.Instance.Resume();
+            }
+            _playerManager.SetInvinsible(2500);
+            _playerManager.Active = true;
+            _playerDead = false;
         }
        
         private async UniTask OutOfHeartsPopupRoutine(bool watchAd)

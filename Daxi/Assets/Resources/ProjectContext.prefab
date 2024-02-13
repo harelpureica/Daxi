@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2066269084786651541}
   - component: {fileID: 4611177276976811551}
   - component: {fileID: 7466300375306915693}
-  - component: {fileID: 4754307507266990568}
+  - component: {fileID: 4562104022913982940}
   m_Layer: 0
   m_Name: ProjectContext
   m_TagString: Untagged
@@ -143,8 +143,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inProduction: 0
-  _instance: {fileID: 4754307507266990568}
---- !u!114 &4754307507266990568
+  _adsManager: {fileID: 4562104022913982940}
+--- !u!114 &4562104022913982940
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

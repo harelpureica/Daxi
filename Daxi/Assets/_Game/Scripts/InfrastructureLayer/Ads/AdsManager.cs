@@ -1,15 +1,13 @@
-﻿
-
-using System;
+﻿using System;
 using UnityEngine;
 using Zenject;
 using GoogleMobileAds.Api;
-using Cysharp.Threading.Tasks;
 
 namespace Daxi.InfrastructureLayer.Ads
 {
-    public class AdsManager : MonoBehaviour
+    public class AdsManager :MonoBehaviour
     {
+     
 
         #region Fields
         private RewardedAd _rewardedAd;
@@ -22,22 +20,24 @@ namespace Daxi.InfrastructureLayer.Ads
         private bool _rewardedAdClosed;
 
         private bool _interstitialClosed;
-        
 
+        private bool _giveReward;
         public bool RewardedAdClosed => _rewardedAdClosed; 
-        public bool InterstitialClosed=> _interstitialClosed; 
+        public bool InterstitialClosed=> _interstitialClosed;
+
+        public event Action OnRewardRecived;
         #endregion
 
         #region Methods
-        private  async void Start()
-        {        
-            await UniTask.Delay(1000);
+        public  void Start()
+        {            
             MobileAds.RaiseAdEventsOnUnityMainThread = true;
             RequestConfiguration requestConfiguration = new RequestConfiguration
             {
                 MaxAdContentRating = MaxAdContentRating.G,
-                TagForChildDirectedTreatment = TagForChildDirectedTreatment.True,                
-            };     
+                TagForChildDirectedTreatment = TagForChildDirectedTreatment.True,  
+                SameAppKeyEnabled=false
+            };    
             MobileAds.SetRequestConfiguration(requestConfiguration);            
             MobileAds.Initialize((status) => 
             {
@@ -53,16 +53,20 @@ namespace Daxi.InfrastructureLayer.Ads
 
         public void LoadInterstitialAd()
         {
-
+            if (_interstitialAd != null)
+            {
+                _interstitialAd.Destroy();
+                _interstitialAd = null;
+            }
             var adRequest = new AdRequest();            
-            adRequest.Keywords.Add("unity-admob-sample");
+            //adRequest.Keywords.Add("unity-admob-sample");
             string id = _production ? "ca-app-pub-9057464848725092/3820779178" : "ca-app-pub-3940256099942544/1033173712";
 
             InterstitialAd.Load(id, adRequest, (InterstitialAd ad, LoadAdError error) =>
             {
                 if (error != null || ad == null)
                 {
-                    Debug.LogError("Interstitial ad failed to load" + error);
+                    Debug.LogError("Interstitial ad failed to load: " + error.GetCause());
                     return;
                 }
 
@@ -129,15 +133,18 @@ namespace Daxi.InfrastructureLayer.Ads
 
         public void Load_rewardedAd()
         {
-
+            if (_rewardedAd != null)
+            {
+                _rewardedAd.Destroy();
+                _rewardedAd = null;
+            }
             var adRequest = new AdRequest();
-            adRequest.Keywords.Add("unity-admob-sample");
             string id = _production ? "ca-app-pub-9057464848725092/9636992887" : "ca-app-pub-3940256099942544/5224354917"; 
             RewardedAd.Load(id, adRequest, (RewardedAd ad, LoadAdError error) =>
             {
                 if (error != null || ad == null)
                 {
-                    Debug.LogError("Rewarded failed to load" + error);
+                    Debug.LogError("Rewarded failed to load :" + error.GetCause());
                     return;
                 }
 
@@ -147,64 +154,42 @@ namespace Daxi.InfrastructureLayer.Ads
                 
             });
         }
-        public bool Show_rewardedAd(Action OnRewardRecived)
+        public void Show_rewardedAd()
         {
             if(_rewardedAd==null||! _rewardedAd.CanShowAd())
             {
-                return false;
+                return ;
             }
             _rewardedAdClosed = false;
             _rewardedAd.Show((Reward reward) =>
-            {               
-                OnRewardRecived.Invoke();
-            });
-            return true;
+            {
+                OnReward();
+            }); 
+           
+        }
+        public void OnReward()
+        {
+            OnRewardRecived?.Invoke();
         }
         public void _rewardedAdEvents(RewardedAd ad)
         {
-            // Raised when the ad is estimated to have earned money.
-            ad.OnAdPaid += (AdValue adValue) =>
-            {
-                Debug.Log("Rewarded ad paid");
-
-            };
-            // Raised when an impression is recorded for an ad.
-            ad.OnAdImpressionRecorded += () =>
-            {
-                Debug.Log("Rewarded ad recorded an impression.");
-            };
-            // Raised when a click is recorded for an ad.
-            ad.OnAdClicked += () =>
-            {
-                Debug.Log("Rewarded ad was clicked.");
-            };
-            // Raised when an ad opened full screen content.
-            ad.OnAdFullScreenContentOpened += () =>
-            {
-                Debug.Log("Rewarded ad full screen content opened.");
-            };
-            // Raised when the ad closed full screen content.
+        // Raised when the ad closed full screen content.
             ad.OnAdFullScreenContentClosed += () =>
             {
                
                
                 Load_rewardedAd();
                 _rewardedAdClosed = true;
-                Debug.Log("Rewarded ad full screen content closed.");
             };
-            // Raised when the ad failed to open full screen content.
-            ad.OnAdFullScreenContentFailed += (AdError error) =>
-            {
-                Debug.LogError("Rewarded ad failed to open full screen content " +
-                               "with error : " + error);
-            };
+           
           
         }
 
+
         #endregion
 
+      
 
-       
         #endregion
     }
 }

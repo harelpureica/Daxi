@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.unity3d.player"
     xmlns:tools="http://schemas.android.com/tools">
-
 	<application>
 		<activity android:name="com.unity3d.player.UnityPlayerActivity"
                   android:theme="@style/UnityThemeSelector">
@@ -13,10 +12,10 @@
 			</intent-filter>
 			<meta-data android:name="unityplayer.UnityActivity" android:value="true" />
 
-			<!-- Add the following meta-data tag for AdMob -->
+			<!-- Add the following meta-data tag for AdMob - sample app id: ca-app-pub-3940256099942544~3347511713 real app id ca-app-pub-9057464848725092~2072715714 -->
 			<meta-data
                 android:name="com.google.android.gms.ads.APPLICATION_ID"
-                android:value="ca-app-pub-9057464848725092~2072715714"/>
+                android:value="ca-app-pub-3940256099942544~3347511713"/>
 		</activity>
 	</application>
 </manifest>
