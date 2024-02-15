@@ -27,7 +27,7 @@ using Daxi.VisualLayer.PostProcessing;
 using Daxi.InfrastructureLayer.Audio;
 using System.Collections.Generic;
 using Daxi.InfrastructureLayer.Ads;
-using GoogleMobileAds.Api;
+//using GoogleMobileAds.Api;
 using Daxi.InfrastructureLayer.Signals;
 
 namespace Daxi.VisualLayer.Levels
@@ -81,8 +81,8 @@ namespace Daxi.VisualLayer.Levels
         [Inject]
         private PlayerData _playerData;
 
-        [Inject]
-        private AdsManager _adsManager;
+        //[Inject]
+        //private AdsManager _adsManager;
 
         [Inject]
         private AdForLifePopup.AdForLifePopupFactory adForLifePopupFactory;
@@ -160,8 +160,8 @@ namespace Daxi.VisualLayer.Levels
         }
         public async void StartLevel()
         {
-            _adsManager.OnRewardRecived -= OnReward;
-            _adsManager.OnRewardRecived += OnReward;
+            //_adsManager.OnRewardRecived -= OnReward;
+            //_adsManager.OnRewardRecived += OnReward;
             if (MusicPlayer.IsPlaying)
             {
                 await MusicPlayer.Instance.Stop();
@@ -379,13 +379,13 @@ namespace Daxi.VisualLayer.Levels
             }
             else
             {
+                OnReward();
+                //_adsManager.Show_rewardedAd();
 
-                _adsManager.Show_rewardedAd();
-
-                while (!_adsManager.RewardedAdClosed)
-                {
-                    await UniTask.Yield();
-                }                              
+                //while (!_adsManager.RewardedAdClosed)
+                //{
+                //    await UniTask.Yield();
+                //}                              
             }
 
         }
@@ -419,11 +419,11 @@ namespace Daxi.VisualLayer.Levels
             if(watchAd)
             {
                
-                _adsManager.ShowInterstitialAd();
-                while (!_adsManager.InterstitialClosed)
-                {
-                    await UniTask.Yield();
-                }               
+                //_adsManager.ShowInterstitialAd();
+                //while (!_adsManager.InterstitialClosed)
+                //{
+                //    await UniTask.Yield();
+                //}               
             }
             if (OutOfHeartsPopup.playerClickedHome)
             {
@@ -505,11 +505,11 @@ namespace Daxi.VisualLayer.Levels
             await UniTask.Delay(500);   
             if(watchAd)
             {               
-                _adsManager.ShowInterstitialAd();
-                while (_adsManager.InterstitialClosed)
-                {
-                    await UniTask.Yield();
-                }
+                //_adsManager.ShowInterstitialAd();
+                //while (_adsManager.InterstitialClosed)
+                //{
+                //    await UniTask.Yield();
+                //}
             }
             if (popup.PlayerClickedHomeButton)
             {

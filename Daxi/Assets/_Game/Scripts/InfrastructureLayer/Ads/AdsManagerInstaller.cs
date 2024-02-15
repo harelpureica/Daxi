@@ -8,16 +8,16 @@ namespace Daxi.InfrastructureLayer.Ads
         [SerializeField]
         private bool _inProduction;
 
-        [SerializeField]
-        private AdsManager _adsManager;
+        //[SerializeField]
+        //private AdsManager _adsManager;
        
         #region Methods
         public override void InstallBindings()
         {
-            Container
-                .Bind<AdsManager>() 
-                .FromInstance(_adsManager)
-                .AsSingle();
+            //Container
+            //    .Bind<AdsManager>() 
+            //    .FromInstance(_adsManager)
+            //    .AsSingle();
 
             Container
                 .Bind<bool>()
