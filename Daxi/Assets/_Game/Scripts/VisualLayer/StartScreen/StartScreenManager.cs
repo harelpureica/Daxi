@@ -8,13 +8,14 @@ using Daxi.InfrastructureLayer.Audio;
 using GooglePlayGames.BasicApi;
 using GooglePlayGames;
 using Daxi.Storage;
+using System;
 
-public class StartScreenManager : IInitializable
+public class StartScreenManager : MonoBehaviour
 {
-    [Inject(Id ="Start")]
+    [SerializeField]
     private Slider _slider;
 
-    [Inject(Id = "Start")]
+    [SerializeField]
     private TextMeshProUGUI _text;
 
     [Inject]
@@ -23,23 +24,47 @@ public class StartScreenManager : IInitializable
     [Inject]
     private StorageManager _storageManager;
 
-    
-    public  void Initialize()
+    [SerializeField]
+    private Button _loginBtn;
+
+    [SerializeField]
+    private Button _masterloginBtn;
+
+    private float timeSinceCheat;
+    public   void Initialize()
     {
         
-        if (SystemInfo.deviceType==DeviceType.Handheld)
+        _slider.gameObject.SetActive(false);
+        _loginBtn.onClick.AddListener(OnLogin);
+        _masterloginBtn.onClick.AddListener(OnMasterLogin);
+       
+    }
+
+    private async void OnMasterLogin()
+    {
+       
+        _masterloginBtn.gameObject.SetActive(false);
+        _slider.gameObject.SetActive(true);
+        await _storageManager.Load(true);
+        StartGame();
+    }
+
+    private void OnLogin()
+    {
+        _loginBtn.gameObject.SetActive(false);
+        _slider.gameObject.SetActive(true);
+        if (SystemInfo.deviceType == DeviceType.Handheld)
         {
             Authenticate();
+           
+        }else
+        {
+            StartGame();
 
         }
-        else
-        {
-           
-            StartGame();
-        }
-        
 
     }
+
     private async  void StartGame()
     {        
         
@@ -64,14 +89,14 @@ public class StartScreenManager : IInitializable
         PlayGamesPlatform.DebugLogEnabled = true;
         PlayGamesPlatform.Activate();
         PlayGamesPlatform.Instance.Authenticate(OnSignInResult);
-       
+
     }
 
     public async void OnSignInResult(SignInStatus obj)
     {
         if(obj == SignInStatus.Success)
         {           
-            await _storageManager.Load();
+            await _storageManager.Load(false);
             StartGame();
         }
         else
@@ -81,6 +106,26 @@ public class StartScreenManager : IInitializable
              _text.text=$"failed :{obj}";
           
             
+        }
+    }
+
+    public void Tick()
+    {
+        if(Input.touchCount==5)
+        {
+            timeSinceCheat += Time.deltaTime;
+        }else
+        {
+            timeSinceCheat = 0;
+        }
+        if(timeSinceCheat>4)
+        {
+            if(!_masterloginBtn.gameObject.activeInHierarchy)
+            {
+                _masterloginBtn.gameObject.SetActive(true);
+                _loginBtn.gameObject.SetActive(false);
+
+            }
         }
     }
 }

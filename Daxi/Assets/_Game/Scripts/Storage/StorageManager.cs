@@ -7,6 +7,7 @@ using GooglePlayGames.BasicApi;
 using GooglePlayGames.BasicApi.SavedGame;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -31,12 +32,14 @@ namespace Daxi.Storage
 
         private bool _isLoadedOrFailed;
 
+        private bool _master;
         #endregion
 
 
         #region Methods
-        public void Initialize()
+        public async void Initialize()
         {
+           
             _data.OnDataChenged -= OnDataChange;
             _data.OnDataChenged += OnDataChange;
 
@@ -44,10 +47,10 @@ namespace Daxi.Storage
 
         public void OnDataChange()
         {
-            Save();
+            Save(_master);
         }
 
-        public void Save()
+        public void Save(bool master)
         {
            
             if (_proccesing|| SystemInfo.deviceType != DeviceType.Handheld)
@@ -55,13 +58,22 @@ namespace Daxi.Storage
                 Debug.Log("eror saving");
                 return;
             }
+            if(master)
+            {
+                PlayerPrefs.SetString(FileName, _data.GetStringData());
+                return;
+            }
             _save = true;
             _proccesing = true;
             OpenSavedGame();
         }
-        public async UniTask Load()
+        public async UniTask Load(bool master)
         {
-
+            if(master)
+            {
+                _master = true;
+                return;
+            }
             if (_proccesing||SystemInfo.deviceType!=DeviceType.Handheld)
             {
                 Debug.Log("eror Loading");
@@ -72,6 +84,7 @@ namespace Daxi.Storage
                 Debug.Log("eror loading");
                 return;
             }
+           
             if (!PlayerPrefs.HasKey(FileName))
             {
                 var data = $"{0}|{1}|{0}|{0}|{0}|{0}|{0}|{0}|{0}";
@@ -181,6 +194,8 @@ namespace Daxi.Storage
         }
 
         
+
+
         #endregion
 
     }

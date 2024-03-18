@@ -13,6 +13,12 @@ namespace Daxi.VisualLayer.StartScreen.Installers
 
         [SerializeField]
         private TextMeshProUGUI _text;
+
+        [SerializeField]
+        private Button _login;
+
+        [SerializeField]
+        private Button _masterlogin;
         #endregion
 
         #region Methods
@@ -27,6 +33,18 @@ namespace Daxi.VisualLayer.StartScreen.Installers
                 .WithId("Start")
                 .FromInstance(_slider)
                 .AsTransient();
+
+            Container
+               .Bind<Button>()
+               .WithId("Login")
+               .FromInstance(_login)
+               .AsTransient();
+
+            Container
+              .Bind<Button>()
+              .WithId("MasterLogin")
+              .FromInstance(_masterlogin)
+              .AsTransient();
 
             Container
                .Bind<TextMeshProUGUI>()

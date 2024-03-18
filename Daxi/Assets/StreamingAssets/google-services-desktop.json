@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "791597340695",
+    "project_id": "daxi-23bb9",
+    "storage_bucket": "daxi-23bb9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:791597340695:android:f8601f909c3c6724152452",
+        "android_client_info": {
+          "package_name": "com.WildGeex.Daxi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSTitvYj9JsCEKfJ_Hkd3c7ScCtRb7gzU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

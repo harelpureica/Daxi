@@ -1,0 +1,42 @@
+[debug] [2024-03-17T06:59:54.339Z] ----------------------------------------------------------------------
+[debug] [2024-03-17T06:59:54.342Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\harel\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-03-17T06:59:54.342Z] CLI Version:   13.5.1
+[debug] [2024-03-17T06:59:54.342Z] Platform:      win32
+[debug] [2024-03-17T06:59:54.342Z] Node Version:  v20.11.1
+[debug] [2024-03-17T06:59:54.342Z] Time:          Sun Mar 17 2024 08:59:54 GMT+0200 (Israel Standard Time)
+[debug] [2024-03-17T06:59:54.342Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-03-17T06:59:54.347Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-03-17T06:59:54.347Z] > authorizing via signed-in user (harelsimha@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\harel\GameDev\GIT\Daxi\Daxi
+
+[debug] [2024-03-17T07:04:49.747Z] ----------------------------------------------------------------------
+[debug] [2024-03-17T07:04:49.750Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\harel\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-03-17T07:04:49.750Z] CLI Version:   13.5.1
+[debug] [2024-03-17T07:04:49.750Z] Platform:      win32
+[debug] [2024-03-17T07:04:49.750Z] Node Version:  v20.11.1
+[debug] [2024-03-17T07:04:49.750Z] Time:          Sun Mar 17 2024 09:04:49 GMT+0200 (Israel Standard Time)
+[debug] [2024-03-17T07:04:49.750Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-03-17T07:04:49.755Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-03-17T07:04:49.755Z] > authorizing via signed-in user (harelsimha@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\harel\GameDev\GIT\Daxi\Daxi
+

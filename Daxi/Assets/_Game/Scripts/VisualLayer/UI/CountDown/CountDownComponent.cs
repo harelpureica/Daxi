@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -45,7 +46,12 @@ namespace Daxi.VisualLayer.UI.CountDown
             {
                 return;
             }
+            if(_audioSource==null||_panel == null)
+            {
+                return;
+            }
             _counting=true;
+
             _panel.SetActive(true);
             await ShowUiRoutine(_ready, 0.2f);
             await UniTask.Delay(500);
@@ -56,15 +62,24 @@ namespace Daxi.VisualLayer.UI.CountDown
             await ShowUiRoutine(_go, 0.2f);
             await UniTask.Delay(500);
             await HideUiRoutine(_go, 0.2f);
+            if (_audioSource == null || _panel == null)
+            {
+                return;
+            }
             _panel.SetActive(false);
             _audioSource.PlayOneShot(_endClip);
             await UniTask.Delay(400);
             _counting = false;            
 
         }
+        
         public async UniTask NumbersCountDown()
         {
             if (_counting)
+            {
+                return;
+            }
+            if (_audioSource == null || _panel == null)
             {
                 return;
             }
@@ -87,6 +102,10 @@ namespace Daxi.VisualLayer.UI.CountDown
         private async UniTask ShowUiRoutine(Transform transform, float transitionTime)
         {
             if (transform == null)
+            {
+                return;
+            }
+            if (_audioSource == null || _panel == null)
             {
                 return;
             }
@@ -116,9 +135,14 @@ namespace Daxi.VisualLayer.UI.CountDown
                 {
                     return;
                 }
+               
                 transform.localScale = Vector3.Lerp( Vector3.one, Vector3.zero, lerp);
                 lerp += Time.deltaTime / transitionTime;
                 await UniTask.Yield();
+            }
+            if (transform == null)
+            {
+                return;
             }
             transform.gameObject.SetActive(false);
 

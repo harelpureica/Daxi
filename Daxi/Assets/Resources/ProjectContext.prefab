@@ -56,7 +56,6 @@ MonoBehaviour:
   - {fileID: 8079735408233594417}
   - {fileID: 2066269084786651541}
   - {fileID: 4611177276976811551}
-  - {fileID: 7466300375306915693}
   _installerPrefabs: []
   _parentNewObjectsUnderContext: 1
   _editorReflectionBakingCoverageMode: 0
@@ -136,7 +135,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6595910452007329796}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b835235079501c64f870ee6c16622590, type: 3}
   m_Name: 
